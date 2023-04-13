@@ -15,6 +15,8 @@ public:
 	void calculate();
 	void determineTrends();
 	void takeInput();
+	void configureUmbrella();
+	District* getDistrict(string districtName);
 
 private:
 	District districts[NO_OF_DISTRICTS];

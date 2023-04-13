@@ -987,6 +987,61 @@ void Results::setToPrevious()
 	districts[86].setVote("HUDAPAR", 0.21);
 }
 
+void Results::configureUmbrella()
+{
+	getDistrict("Adiyaman")->setUmbrella("TIP", "YSP");
+	getDistrict("Agri")->setUmbrella("TIP", "YSP");
+	getDistrict("Ankara I")->setUmbrella("TIP", "YSP");
+	getDistrict("Ardahan")->setUmbrella("TIP", "YSP");
+	getDistrict("Aydin")->setUmbrella("TIP", "YSP");
+	getDistrict("Bartin")->setUmbrella("TIP", "YSP");
+	getDistrict("Batman")->setUmbrella("TIP", "YSP");
+	getDistrict("Bingol")->setUmbrella("TIP", "YSP");
+	getDistrict("Bitlis")->setUmbrella("TIP", "YSP");
+	getDistrict("Burdur")->setUmbrella("TIP", "YSP");
+	getDistrict("Bursa II")->setUmbrella("TIP", "YSP");
+	getDistrict("Diyarbakir")->setUmbrella("TIP", "YSP");
+	getDistrict("Elazig")->setUmbrella("TIP", "YSP");
+	getDistrict("Erzurum")->setUmbrella("TIP", "YSP");
+	getDistrict("Gaziantep")->setUmbrella("TIP", "YSP");
+	getDistrict("Hakkari")->setUmbrella("TIP", "YSP");
+	getDistrict("Igdir")->setUmbrella("TIP", "YSP");
+	getDistrict("Izmir I")->setUmbrella("TIP", "YSP");
+	getDistrict("Kahramanmaras")->setUmbrella("TIP", "YSP");
+	getDistrict("Kars")->setUmbrella("TIP", "YSP");
+	getDistrict("Kastamonu")->setUmbrella("TIP", "YSP");
+	getDistrict("Kirikkale")->setUmbrella("TIP", "YSP");
+	getDistrict("Kilis")->setUmbrella("TIP", "YSP");
+	getDistrict("Kocaeli")->setUmbrella("TIP", "YSP");
+	getDistrict("Malatya")->setUmbrella("TIP", "YSP");
+	getDistrict("Manisa")->setUmbrella("TIP", "YSP");
+	getDistrict("Mardin")->setUmbrella("TIP", "YSP");
+	getDistrict("Mus")->setUmbrella("TIP", "YSP");
+	getDistrict("Siirt")->setUmbrella("TIP", "YSP");
+	getDistrict("Sanliurfa")->setUmbrella("TIP", "YSP");
+	getDistrict("Sirnak")->setUmbrella("TIP", "YSP");
+	getDistrict("Tunceli")->setUmbrella("TIP", "YSP");
+	getDistrict("Van")->setUmbrella("TIP", "YSP");
+
+	getDistrict("Adiyaman")->setUmbrella("IYIP", "CHP");
+	getDistrict("Bartin")->setUmbrella("IYIP", "CHP");
+	getDistrict("Batman")->setUmbrella("IYIP", "CHP");
+	getDistrict("Duzce")->setUmbrella("IYIP", "CHP");
+	getDistrict("Corum")->setUmbrella("IYIP", "CHP");
+	getDistrict("Erzincan")->setUmbrella("IYIP", "CHP");
+	getDistrict("Hakkari")->setUmbrella("IYIP", "CHP");
+	getDistrict("Rize")->setUmbrella("IYIP", "CHP");
+	getDistrict("Van")->setUmbrella("IYIP", "CHP");
+
+	getDistrict("Cankiri")->setUmbrella("CHP", "IYIP");
+	getDistrict("Gumushane")->setUmbrella("CHP", "IYIP");
+	getDistrict("Bitlis")->setUmbrella("CHP", "IYIP");
+	getDistrict("Mus")->setUmbrella("CHP", "IYIP");
+	getDistrict("Yozgat")->setUmbrella("CHP", "IYIP");
+	getDistrict("Aksaray")->setUmbrella("CHP", "IYIP");
+	getDistrict("Bayburt")->setUmbrella("CHP", "IYIP");
+}
+
 void Results::printLocalResults(ofstream& file)
 {
 	for (int i = 0; i < NO_OF_DISTRICTS; i++)
@@ -1054,4 +1109,13 @@ void Results::takeInput()
 		cin >> input;
 		party->setVote(stof(input));
 	}
+}
+
+District* Results::getDistrict(string districtName)
+{
+	for (int i = 0; i < NO_OF_DISTRICTS; i++)
+		if (districts[i].getName() == districtName)
+			return &districts[i];
+
+	return nullptr;
 }

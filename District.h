@@ -9,6 +9,7 @@ public:
 	void setCensus(int districtCensus) { census = districtCensus; }
 	void setVote(string partyName, float partyVote) { parties.getParty(partyName)->setVote(partyVote); };
 	void setNoOfSeats(int number) { noOfSeats = number; };
+	void setUmbrella(string party, string umbrellaParty) { parties.getParty(party)->setUmbrella(umbrellaParty); };
 	string getName() { return name; };
 	int getCensus() { return census; };
 	float getVote(string partyName) { return parties.getParty(partyName)->getVote(); };

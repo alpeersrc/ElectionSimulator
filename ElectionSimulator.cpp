@@ -17,6 +17,7 @@ int main()
 
 	results.determineTrends();
 	results.setToPrevious();
+	results.configureUmbrella();
 	results.calculate();
 	results.distributeSeats();
 	results.printLocalResults(brokenDown);
