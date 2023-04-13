@@ -18,7 +18,7 @@
     <ClCompile Include="ElectionSimulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Database.cpp">
+    <ClCompile Include="Results.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="District.cpp">
@@ -32,7 +32,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Database.h">
+    <ClInclude Include="Results.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="District.h">

@@ -227,8 +227,16 @@ void Parties::calculate(Parties* previous, Parties* foreseen)
 		}
 	}
 
+	// transfer votes from declining parties to rising parties
+	float totalPool = 0;
+	// find out how much votes were gained by rising parties in this district
+	for (int i = 0; i < NO_OF_PARTIES; i++) {
+		party = foreseen->getParty(i);
+		if (party->getTrend() == Trend::Rising)
+			totalPool += party->getVote() * (1 - (1 / party->getSwing()));
+	}
+
 	float lost;
-	float totalLost = 0;
 	// find out how much votes were lost by declining parties in this district
 	for (int i = 0; i < NO_OF_PARTIES; i++) {
 		party = foreseen->getParty(i);
@@ -241,24 +249,14 @@ void Parties::calculate(Parties* previous, Parties* foreseen)
 			nationalVoterBase = previous->getParty(voterBase1)->getVote() * voterFactor1 + previous->getParty(voterBase2)->getVote() * voterFactor2;
 
 			lost = (getParty(i)->getVote() + temp.getParty(i)->getVote()) * (1 - party->getSwing()) * localVoterBase / nationalVoterBase;
-			totalLost += lost;
+			for (int j = 0; j < NO_OF_PARTIES; j++) {
+				party = foreseen->getParty(j);
+				if (party->getTrend() == Trend::Rising) {
+					stolen = lost * party->getVote() * (1 - (1 / party->getSwing())) / totalPool;
+					temp.getParty(j)->setVote(temp.getParty(j)->getVote() + stolen);
+				}
+			}
 			temp.getParty(i)->setVote(temp.getParty(i)->getVote() - lost);
-		}
-	}
-
-	float totalPool = 0;
-	// find out how much votes were gained by rising parties in this district
-	for (int i = 0; i < NO_OF_PARTIES; i++) {
-		party = foreseen->getParty(i);
-		if (party->getTrend() == Trend::Rising)
-			totalPool += party->getVote() * (1 - (1 / party->getSwing()));
-	}
-
-	for (int i = 0; i < NO_OF_PARTIES; i++) {
-		party = foreseen->getParty(i);
-		if (party->getTrend() == Trend::Rising) {
-			stolen = totalLost * party->getVote() * (1 - (1 / party->getSwing())) / totalPool;
-			temp.getParty(i)->setVote(temp.getParty(i)->getVote() + stolen);
 		}
 	}
 

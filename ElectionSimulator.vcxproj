@@ -127,14 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Database.cpp" />
+    <ClCompile Include="Results.cpp" />
     <ClCompile Include="District.cpp" />
     <ClCompile Include="ElectionSimulator.cpp" />
     <ClCompile Include="Parties.cpp" />
     <ClCompile Include="Party.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Database.h" />
+    <ClInclude Include="Results.h" />
     <ClInclude Include="District.h" />
     <ClInclude Include="Parties.h" />
     <ClInclude Include="Party.h" />
