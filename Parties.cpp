@@ -15,7 +15,7 @@ Parties::Parties()
 	parties[2].setName("CHP");
 	parties[2].setAlliance(Alliance::Nation);
 	parties[2].setVoterBase("IYIP", 0.75);
-	parties[2].setVoterBase("HDP", 0.25);
+	parties[2].setVoterBase("YSP", 0.25);
 
 	parties[3].setName("IYIP");
 	parties[3].setAlliance(Alliance::Nation);
@@ -26,6 +26,7 @@ Parties::Parties()
 	parties[4].setAlliance(Alliance::Nation);
 	parties[4].setVoterBase("AKP", 0.75);
 	parties[4].setVoterBase("CHP", 0.25);
+	parties[4].setUmbrella("CHP");
 
 	parties[5].setName("YSP");
 	parties[5].setAlliance(Alliance::Labour);
@@ -36,11 +37,13 @@ Parties::Parties()
 	parties[6].setAlliance(Alliance::Nation);
 	parties[6].setVoterBase("AKP", 0.9);
 	parties[6].setVoterBase("CHP", 0.1);
+	parties[6].setUmbrella("CHP");
 
 	parties[7].setName("GP");
 	parties[7].setAlliance(Alliance::Nation);
 	parties[7].setVoterBase("AKP", 0.9);
 	parties[7].setVoterBase("YSP", 0.1);
+	parties[7].setUmbrella("GP");
 
 	parties[8].setName("TIP");
 	parties[8].setAlliance(Alliance::Labour);
@@ -69,11 +72,13 @@ Parties::Parties()
 	parties[13].setAlliance(Alliance::Nation);
 	parties[13].setVoterBase("IYIP", 0.75);
 	parties[13].setVoterBase("CHP", 0.25);
+	parties[13].setUmbrella("CHP");
 
 	parties[14].setName("HUDAPAR");
 	parties[14].setAlliance(Alliance::Nation);
 	parties[14].setVoterBase("AKP", 0.9);
 	parties[14].setVoterBase("SP", 0.1);
+	parties[14].setUmbrella("AKP");
 }
 
 Party* Parties::getParty(string partyName)
@@ -88,6 +93,9 @@ Party* Parties::getParty(string partyName)
 void Parties::printResults(ofstream& file)
 {
 	for (int i = 0; i < NO_OF_PARTIES; i++) {
+		if (parties[i].getVote() < 0.01)
+			continue;
+
 		stringstream stream;
 		stream << fixed << setprecision(2) << parties[i].getVote();
 		file << parties[i].getName() << "; " << stream.str() << "; " << parties[i].getSeats() << endl;
@@ -232,8 +240,15 @@ void Parties::calculate(Parties* previous, Parties* foreseen)
 	// find out how much votes were gained by rising parties in this district
 	for (int i = 0; i < NO_OF_PARTIES; i++) {
 		party = foreseen->getParty(i);
-		if (party->getTrend() == Trend::Rising)
-			totalPool += party->getVote() * (1 - (1 / party->getSwing()));
+		if (party->getTrend() == Trend::Rising) {
+			voterBase1 = party->getVoterBase1();
+			voterBase2 = party->getVoterBase2();
+			voterFactor1 = party->getVoterFactor1();
+			voterFactor2 = party->getVoterFactor2();
+			localVoterBase = getParty(voterBase1)->getVote() * voterFactor1 + getParty(voterBase2)->getVote() * voterFactor2;
+			nationalVoterBase = previous->getParty(voterBase1)->getVote() * voterFactor1 + previous->getParty(voterBase2)->getVote() * voterFactor2;
+			totalPool += party->getVote() * (1 - (1 / party->getSwing())) * localVoterBase / nationalVoterBase;
+		}
 	}
 
 	float lost;
@@ -247,16 +262,22 @@ void Parties::calculate(Parties* previous, Parties* foreseen)
 			voterFactor2 = party->getVoterFactor2();
 			localVoterBase = getParty(voterBase1)->getVote() * voterFactor1 + getParty(voterBase2)->getVote() * voterFactor2;
 			nationalVoterBase = previous->getParty(voterBase1)->getVote() * voterFactor1 + previous->getParty(voterBase2)->getVote() * voterFactor2;
-
 			lost = (getParty(i)->getVote() + temp.getParty(i)->getVote()) * (1 - party->getSwing()) * localVoterBase / nationalVoterBase;
+			temp.getParty(i)->setVote(temp.getParty(i)->getVote() - lost);
+
 			for (int j = 0; j < NO_OF_PARTIES; j++) {
 				party = foreseen->getParty(j);
 				if (party->getTrend() == Trend::Rising) {
-					stolen = lost * party->getVote() * (1 - (1 / party->getSwing())) / totalPool;
+					voterBase1 = party->getVoterBase1();
+					voterBase2 = party->getVoterBase2();
+					voterFactor1 = party->getVoterFactor1();
+					voterFactor2 = party->getVoterFactor2();
+					localVoterBase = getParty(voterBase1)->getVote() * voterFactor1 + getParty(voterBase2)->getVote() * voterFactor2;
+					nationalVoterBase = previous->getParty(voterBase1)->getVote() * voterFactor1 + previous->getParty(voterBase2)->getVote() * voterFactor2;
+					stolen = lost * party->getVote() * (1 - (1 / party->getSwing())) / totalPool * localVoterBase / nationalVoterBase;
 					temp.getParty(j)->setVote(temp.getParty(j)->getVote() + stolen);
 				}
 			}
-			temp.getParty(i)->setVote(temp.getParty(i)->getVote() - lost);
 		}
 	}
 
@@ -264,7 +285,15 @@ void Parties::calculate(Parties* previous, Parties* foreseen)
 	for (int i = 0; i < NO_OF_PARTIES; i++)
 		getParty(i)->setVote(getParty(i)->getVote() + temp.getParty(i)->getVote());
 
-	/*
+	// assign votes of parties under their respective umbrella parties
+	for (int i = 0; i < NO_OF_PARTIES; i++) {
+		if (getParty(i)->getUmbrella() != "NA") {
+			party = getParty(getParty(i)->getUmbrella());
+			party->setVote(party->getVote() + getParty(i)->getVote());
+			getParty(i)->setVote(0);
+		}
+	}
+
 	// normalize the votes to 100%
 	sum = 0;
 	for (int i = 0; i < NO_OF_PARTIES; i++)
@@ -272,5 +301,4 @@ void Parties::calculate(Parties* previous, Parties* foreseen)
 
 	for (int i = 0; i < NO_OF_PARTIES; i++)
 		getParty(i)->setVote(getParty(i)->getVote() / sum * 100);
-	*/
 }

@@ -35,6 +35,7 @@ public:
 	void setVoterBase(string partyName, float factor);
 	void setSwing(float partySwing) { swing = partySwing; };
 	void setOverTheBarrage(bool barrageStatus) { overTheBarrage = barrageStatus; };
+	void setUmbrella(string partyName) { umbrella = partyName; };
 	void grantSeat() { noOfSeats++; };
 	string getName() { return name; };
 	Alliance getAlliance() { return alliance; };
@@ -46,6 +47,7 @@ public:
 	float getVoterFactor1() { return voterFactor1; };
 	float getVoterFactor2() { return voterFactor2; };
 	float getSwing() { return swing; };
+	string getUmbrella() { return umbrella; };
 	bool isOverTheBarrage() { return overTheBarrage; };
 
 private:
@@ -60,5 +62,6 @@ private:
 	float voterFactor2 = 0.50;
 	float swing = 1;
 	bool overTheBarrage = true;
+	string umbrella = "NA";
 };
 

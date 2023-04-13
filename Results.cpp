@@ -1016,6 +1016,10 @@ void Results::printNationalResults(ofstream& file)
 		partyName = nationalResults.getParty(i)->getName();
 		votes = nationalResults.getParty(partyName)->getVote() / census;
 		nationalResults.getParty(partyName)->setVote(votes);
+		
+		if (votes < 0.1)
+			continue;
+
 		stringstream stream;
 		stream << fixed << setprecision(2) << votes;
 		file << partyName << "; " << stream.str() << "; " << nationalResults.getParty(partyName)->getSeats() << endl;
