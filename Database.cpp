@@ -2,12 +2,12 @@
 
 Results::Results()
 {
-	foreseen.getParty("AKP")->setVote(30.7);
+	foreseen.getParty("AKP")->setVote(30.5);
 	foreseen.getParty("MHP")->setVote(6.6);
-	foreseen.getParty("CHP")->setVote(26.1);
+	foreseen.getParty("CHP")->setVote(26.0);
 	foreseen.getParty("IYIP")->setVote(13.6);
 	foreseen.getParty("SP")->setVote(0.8);
-	foreseen.getParty("YSP")->setVote(10.7);
+	foreseen.getParty("YSP")->setVote(10.6);
 	foreseen.getParty("DEVA")->setVote(1.4);
 	foreseen.getParty("GP")->setVote(1.0);
 	foreseen.getParty("TIP")->setVote(1.8);
@@ -16,7 +16,7 @@ Results::Results()
 	foreseen.getParty("BBP")->setVote(0.5);
 	foreseen.getParty("YRP")->setVote(2.2);
 	foreseen.getParty("DP")->setVote(0.1);
-
+	foreseen.getParty("HUDAPAR")->setVote(0.4);
 	
 	previous.getParty("AKP")->setVote(42.6);
 	previous.getParty("MHP")->setVote(11.1);
@@ -24,15 +24,8 @@ Results::Results()
 	previous.getParty("IYIP")->setVote(10);
 	previous.getParty("SP")->setVote(1.3);
 	previous.getParty("YSP")->setVote(11.7);
+	previous.getParty("HUDAPAR")->setVote(0.42);
 	
-	/*
-	previous.getParty("AKP")->setVote(45.97);
-	previous.getParty("MHP")->setVote(10.87);
-	previous.getParty("CHP")->setVote(30.77);
-	previous.getParty("IYIP")->setVote(7.81);
-	previous.getParty("SP")->setVote(1.76);
-	previous.getParty("YSP")->setVote(1.9);
-	*/
 	determineTrends();
 }
 
@@ -47,6 +40,7 @@ void Results::setToPrevious()
 	districts[0].setVote("IYIP", 12.15);
 	districts[0].setVote("SP", 1.06);
 	districts[0].setVote("YSP", 13.51);
+	districts[0].setVote("HUDAPAR", 0.55);
 
 	districts[1].setName("Adiyaman");
 	districts[1].setNoOfSeats(5);
@@ -57,6 +51,7 @@ void Results::setToPrevious()
 	districts[1].setVote("IYIP", 5.27);
 	districts[1].setVote("SP", 1.62);
 	districts[1].setVote("YSP", 15.41);
+	districts[1].setVote("HUDAPAR", 1.23);
 
 	districts[2].setName("Afyonkarahisar");
 	districts[2].setNoOfSeats(6);
@@ -67,6 +62,7 @@ void Results::setToPrevious()
 	districts[2].setVote("IYIP", 13.38);
 	districts[2].setVote("SP", 1.11);
 	districts[2].setVote("YSP", 1.25);
+	districts[2].setVote("HUDAPAR", 0.22);
 
 	districts[3].setName("Agri");
 	districts[3].setNoOfSeats(4);
@@ -77,6 +73,7 @@ void Results::setToPrevious()
 	districts[3].setVote("IYIP", 1.66);
 	districts[3].setVote("SP", 0.82);
 	districts[3].setVote("YSP", 62.23);
+	districts[3].setVote("HUDAPAR", 0.75);
 
 	districts[4].setName("Aksaray");
 	districts[4].setNoOfSeats(4);
@@ -87,6 +84,7 @@ void Results::setToPrevious()
 	districts[4].setVote("IYIP", 10.54);
 	districts[4].setVote("SP", 0.83);
 	districts[4].setVote("YSP", 1.57);
+	districts[4].setVote("HUDAPAR", 0.28);
 
 	districts[5].setName("Amasya");
 	districts[5].setNoOfSeats(3);
@@ -97,6 +95,7 @@ void Results::setToPrevious()
 	districts[5].setVote("IYIP", 12.11);
 	districts[5].setVote("SP", 1.11);
 	districts[5].setVote("YSP", 2.27);
+	districts[5].setVote("HUDAPAR", 0.16);
 
 	districts[6].setName("Ankara I");
 	districts[6].setNoOfSeats(13);
@@ -107,6 +106,7 @@ void Results::setToPrevious()
 	districts[6].setVote("IYIP", 12.33);
 	districts[6].setVote("SP", 1.37);
 	districts[6].setVote("YSP", 8.83);
+	districts[6].setVote("HUDAPAR", 0.09);
 
 	districts[7].setName("Ankara II");
 	districts[7].setNoOfSeats(11);
@@ -117,6 +117,7 @@ void Results::setToPrevious()
 	districts[7].setVote("IYIP", 10.42);
 	districts[7].setVote("SP", 1.54);
 	districts[7].setVote("YSP", 4.21);
+	districts[7].setVote("HUDAPAR", 0.12);
 
 	districts[8].setName("Ankara III");
 	districts[8].setNoOfSeats(12);
@@ -127,6 +128,7 @@ void Results::setToPrevious()
 	districts[8].setVote("IYIP", 13.34);
 	districts[8].setVote("SP", 1.59);
 	districts[8].setVote("YSP", 5.8);
+	districts[8].setVote("HUDAPAR", 0.12);
 
 	districts[9].setName("Antalya");
 	districts[9].setNoOfSeats(16);
@@ -137,6 +139,7 @@ void Results::setToPrevious()
 	districts[9].setVote("IYIP", 16.9);
 	districts[9].setVote("SP", 0.96);
 	districts[9].setVote("YSP", 7.34);
+	districts[9].setVote("HUDAPAR", 0.22);
 
 	districts[10].setName("Ardahan");
 	districts[10].setNoOfSeats(2);
@@ -147,6 +150,7 @@ void Results::setToPrevious()
 	districts[10].setVote("IYIP", 5.12);
 	districts[10].setVote("SP", 1);
 	districts[10].setVote("YSP", 23.38);
+	districts[10].setVote("HUDAPAR", 0.35);
 
 	districts[11].setName("Artvin");
 	districts[11].setNoOfSeats(2);
@@ -157,6 +161,7 @@ void Results::setToPrevious()
 	districts[11].setVote("IYIP", 10.24);
 	districts[11].setVote("SP", 1.45);
 	districts[11].setVote("YSP", 4.92);
+	districts[11].setVote("HUDAPAR", 0.28);
 
 	districts[12].setName("Aydin");
 	districts[12].setNoOfSeats(8);
@@ -167,6 +172,7 @@ void Results::setToPrevious()
 	districts[12].setVote("IYIP", 14.77);
 	districts[12].setVote("SP", 0.71);
 	districts[12].setVote("YSP", 9.37);
+	districts[12].setVote("HUDAPAR", 0.25);
 
 	districts[13].setName("Balikesir");
 	districts[13].setNoOfSeats(9);
@@ -177,6 +183,7 @@ void Results::setToPrevious()
 	districts[13].setVote("IYIP", 14.71);
 	districts[13].setVote("SP", 1.17);
 	districts[13].setVote("YSP", 4.25);
+	districts[13].setVote("HUDAPAR", 0.18);
 
 	districts[14].setName("Bartin");
 	districts[14].setNoOfSeats(2);
@@ -187,6 +194,7 @@ void Results::setToPrevious()
 	districts[14].setVote("IYIP", 5.84);
 	districts[14].setVote("SP", 2.12);
 	districts[14].setVote("YSP", 1.72);
+	districts[14].setVote("HUDAPAR", 0.28);
 
 	districts[15].setName("Batman");
 	districts[15].setNoOfSeats(5);
@@ -197,6 +205,7 @@ void Results::setToPrevious()
 	districts[15].setVote("IYIP", 1.2);
 	districts[15].setVote("SP", 3.12);
 	districts[15].setVote("YSP", 62.07);
+	districts[15].setVote("HUDAPAR", 5.46);
 
 	districts[16].setName("Bayburt");
 	districts[16].setNoOfSeats(1);
@@ -207,6 +216,7 @@ void Results::setToPrevious()
 	districts[16].setVote("IYIP", 6.15);
 	districts[16].setVote("SP", 3.24);
 	districts[16].setVote("YSP", 1.21);
+	districts[16].setVote("HUDAPAR", 0.16);
 
 	districts[17].setName("Bilecik");
 	districts[17].setNoOfSeats(2);
@@ -217,6 +227,7 @@ void Results::setToPrevious()
 	districts[17].setVote("IYIP", 14.11);
 	districts[17].setVote("SP", 1.12);
 	districts[17].setVote("YSP", 3.37);
+	districts[17].setVote("HUDAPAR", 0.32);
 
 	districts[18].setName("Bingol");
 	districts[18].setNoOfSeats(3);
@@ -227,6 +238,7 @@ void Results::setToPrevious()
 	districts[18].setVote("IYIP", 4.08);
 	districts[18].setVote("SP", 1.08);
 	districts[18].setVote("YSP", 26.81);
+	districts[18].setVote("HUDAPAR", 4.35);
 
 	districts[19].setName("Bitlis");
 	districts[19].setNoOfSeats(3);
@@ -237,6 +249,7 @@ void Results::setToPrevious()
 	districts[19].setVote("IYIP", 3.28);
 	districts[19].setVote("SP", 1.11);
 	districts[19].setVote("YSP", 42.54);
+	districts[19].setVote("HUDAPAR", 1.1);
 
 	districts[20].setName("Bolu");
 	districts[20].setNoOfSeats(3);
@@ -247,6 +260,7 @@ void Results::setToPrevious()
 	districts[20].setVote("IYIP", 8.55);
 	districts[20].setVote("SP", 1.52);
 	districts[20].setVote("YSP", 2.08);
+	districts[20].setVote("HUDAPAR", 0.19);
 
 	districts[21].setName("Burdur");
 	districts[21].setNoOfSeats(3);
@@ -257,6 +271,7 @@ void Results::setToPrevious()
 	districts[21].setVote("IYIP", 19.93);
 	districts[21].setVote("SP", 1.53);
 	districts[21].setVote("YSP", 1.92);
+	districts[21].setVote("HUDAPAR", 0.32);
 
 	districts[22].setName("Bursa I");
 	districts[22].setNoOfSeats(10);
@@ -267,6 +282,7 @@ void Results::setToPrevious()
 	districts[22].setVote("IYIP", 14.22);
 	districts[22].setVote("SP", 1.65);
 	districts[22].setVote("YSP", 4.76);
+	districts[22].setVote("HUDAPAR", 0.17);
 
 	districts[23].setName("Bursa II");
 	districts[23].setNoOfSeats(10);
@@ -277,6 +293,7 @@ void Results::setToPrevious()
 	districts[23].setVote("IYIP", 10.58);
 	districts[23].setVote("SP", 1.79);
 	districts[23].setVote("YSP", 6.68);
+	districts[23].setVote("HUDAPAR", 0.29);
 
 	districts[24].setName("Canakkale");
 	districts[24].setNoOfSeats(4);
@@ -287,6 +304,7 @@ void Results::setToPrevious()
 	districts[24].setVote("IYIP", 16.77);
 	districts[24].setVote("SP", 0.77);
 	districts[24].setVote("YSP", 3.75);
+	districts[24].setVote("HUDAPAR", 0.19);
 
 	districts[25].setName("Cankiri");
 	districts[25].setNoOfSeats(2);
@@ -297,6 +315,7 @@ void Results::setToPrevious()
 	districts[25].setVote("IYIP", 11.87);
 	districts[25].setVote("SP", 1.1);
 	districts[25].setVote("YSP", 1.11);
+	districts[25].setVote("HUDAPAR", 0.17);
 
 	districts[26].setName("Corum");
 	districts[26].setNoOfSeats(4);
@@ -307,6 +326,7 @@ void Results::setToPrevious()
 	districts[26].setVote("IYIP", 8.41);
 	districts[26].setVote("SP", 1.09);
 	districts[26].setVote("YSP", 3.64);
+	districts[26].setVote("HUDAPAR", 0.24);
 
 	districts[27].setName("Denizli");
 	districts[27].setNoOfSeats(8);
@@ -317,6 +337,7 @@ void Results::setToPrevious()
 	districts[27].setVote("IYIP", 16.46);
 	districts[27].setVote("SP", 0.84);
 	districts[27].setVote("YSP", 4.03);
+	districts[27].setVote("HUDAPAR", 0.25);
 
 	districts[28].setName("Diyarbakir");
 	districts[28].setNoOfSeats(12);
@@ -327,6 +348,7 @@ void Results::setToPrevious()
 	districts[28].setVote("IYIP", 2.79);
 	districts[28].setVote("SP", 1.69);
 	districts[28].setVote("YSP", 65.54);
+	districts[28].setVote("HUDAPAR", 4.43);
 
 	districts[29].setName("Duzce");
 	districts[29].setNoOfSeats(3);
@@ -337,6 +359,7 @@ void Results::setToPrevious()
 	districts[29].setVote("IYIP", 6.74);
 	districts[29].setVote("SP", 1.49);
 	districts[29].setVote("YSP", 2.04);
+	districts[29].setVote("HUDAPAR", 0.13);
 
 	districts[30].setName("Edirne");
 	districts[30].setNoOfSeats(4);
@@ -347,6 +370,7 @@ void Results::setToPrevious()
 	districts[30].setVote("IYIP", 15.64);
 	districts[30].setVote("SP", 1.03);
 	districts[30].setVote("YSP", 3.68);
+	districts[30].setVote("HUDAPAR", 0.22);
 
 	districts[31].setName("Elazig");
 	districts[31].setNoOfSeats(5);
@@ -357,6 +381,7 @@ void Results::setToPrevious()
 	districts[31].setVote("IYIP", 7.67);
 	districts[31].setVote("SP", 1.76);
 	districts[31].setVote("YSP", 10.05);
+	districts[31].setVote("HUDAPAR", 1.48);
 
 	districts[32].setName("Erzincan");
 	districts[32].setNoOfSeats(2);
@@ -367,6 +392,7 @@ void Results::setToPrevious()
 	districts[32].setVote("IYIP", 4.17);
 	districts[32].setVote("SP", 1.1);
 	districts[32].setVote("YSP", 5.65);
+	districts[32].setVote("HUDAPAR", 0.1);
 
 	districts[33].setName("Erzurum");
 	districts[33].setNoOfSeats(6);
@@ -377,6 +403,7 @@ void Results::setToPrevious()
 	districts[33].setVote("IYIP", 8.15);
 	districts[33].setVote("SP", 1.76);
 	districts[33].setVote("YSP", 11.96);
+	districts[33].setVote("HUDAPAR", 0.19);
 
 	districts[34].setName("Eskisehir");
 	districts[34].setNoOfSeats(7);
@@ -387,6 +414,7 @@ void Results::setToPrevious()
 	districts[34].setVote("IYIP", 13.2);
 	districts[34].setVote("SP", 1.11);
 	districts[34].setVote("YSP", 4.28);
+	districts[34].setVote("HUDAPAR", 0.13);
 
 	districts[35].setName("Gaziantep");
 	districts[35].setNoOfSeats(14);
@@ -397,6 +425,7 @@ void Results::setToPrevious()
 	districts[35].setVote("IYIP", 6.68);
 	districts[35].setVote("SP", 1.2);
 	districts[35].setVote("YSP", 11.88);
+	districts[35].setVote("HUDAPAR", 0.83);
 
 	districts[36].setName("Giresun");
 	districts[36].setNoOfSeats(4);
@@ -407,6 +436,7 @@ void Results::setToPrevious()
 	districts[36].setVote("IYIP", 14.38);
 	districts[36].setVote("SP", 1.26);
 	districts[36].setVote("YSP", 1.54);
+	districts[36].setVote("HUDAPAR", 0.29);
 
 	districts[37].setName("Gumushane");
 	districts[37].setNoOfSeats(2);
@@ -417,6 +447,7 @@ void Results::setToPrevious()
 	districts[37].setVote("IYIP", 11.34);
 	districts[37].setVote("SP", 1.97);
 	districts[37].setVote("YSP", 1.32);
+	districts[37].setVote("HUDAPAR", 0.27);
 
 	districts[38].setName("Hakkari");
 	districts[38].setNoOfSeats(3);
@@ -427,6 +458,7 @@ void Results::setToPrevious()
 	districts[38].setVote("IYIP", 1.31);
 	districts[38].setVote("SP", 0.53);
 	districts[38].setVote("YSP", 70.17);
+	districts[38].setVote("HUDAPAR", 0.57);
 
 	districts[39].setName("Hatay");
 	districts[39].setNoOfSeats(11);
@@ -437,6 +469,7 @@ void Results::setToPrevious()
 	districts[39].setVote("IYIP", 6.53);
 	districts[39].setVote("SP", 0.91);
 	districts[39].setVote("YSP", 11.02);
+	districts[39].setVote("HUDAPAR", 0.17);
 
 	districts[40].setName("Igdir");
 	districts[40].setNoOfSeats(2);
@@ -447,6 +480,7 @@ void Results::setToPrevious()
 	districts[40].setVote("IYIP", 5.87);
 	districts[40].setVote("SP", 2);
 	districts[40].setVote("YSP", 44.23);
+	districts[40].setVote("HUDAPAR", 0.22);
 
 	districts[41].setName("Isparta");
 	districts[41].setNoOfSeats(4);
@@ -457,6 +491,7 @@ void Results::setToPrevious()
 	districts[41].setVote("IYIP", 18.39);
 	districts[41].setVote("SP", 1.5);
 	districts[41].setVote("YSP", 2.12);
+	districts[41].setVote("HUDAPAR", 0.26);
 
 	districts[42].setName("Istanbul I");
 	districts[42].setNoOfSeats(35);
@@ -467,6 +502,7 @@ void Results::setToPrevious()
 	districts[42].setVote("IYIP", 8.16);
 	districts[42].setVote("SP", 1.55);
 	districts[42].setVote("YSP", 11.31);
+	districts[42].setVote("HUDAPAR", 0.15);
 
 	districts[43].setName("Istanbul II");
 	districts[43].setNoOfSeats(28);
@@ -477,6 +513,7 @@ void Results::setToPrevious()
 	districts[43].setVote("IYIP", 7.58);
 	districts[43].setVote("SP", 1.57);
 	districts[43].setVote("YSP", 12.29);
+	districts[43].setVote("HUDAPAR", 0.21);
 
 	districts[44].setName("Istanbul III");
 	districts[44].setNoOfSeats(35);
@@ -487,6 +524,7 @@ void Results::setToPrevious()
 	districts[44].setVote("IYIP", 8.15);
 	districts[44].setVote("SP", 1.37);
 	districts[44].setVote("YSP", 14.4);
+	districts[44].setVote("HUDAPAR", 0.22);
 
 	districts[45].setName("Izmir I");
 	districts[45].setNoOfSeats(14);
@@ -497,6 +535,7 @@ void Results::setToPrevious()
 	districts[45].setVote("IYIP", 10.48);
 	districts[45].setVote("SP", 0.79);
 	districts[45].setVote("YSP", 12.52);
+	districts[45].setVote("HUDAPAR", 0.16);
 
 	districts[46].setName("Izmir II");
 	districts[46].setNoOfSeats(14);
@@ -507,6 +546,7 @@ void Results::setToPrevious()
 	districts[46].setVote("IYIP", 11.25);
 	districts[46].setVote("SP", 0.81);
 	districts[46].setVote("YSP", 10.51);
+	districts[46].setVote("HUDAPAR", 0.17);
 
 	districts[47].setName("Kahramanmaras");
 	districts[47].setNoOfSeats(8);
@@ -517,6 +557,7 @@ void Results::setToPrevious()
 	districts[47].setVote("IYIP", 9.63);
 	districts[47].setVote("SP", 1.5);
 	districts[47].setVote("YSP", 3.85);
+	districts[47].setVote("HUDAPAR", 0.27);
 
 	districts[48].setName("Karabuk");
 	districts[48].setNoOfSeats(3);
@@ -527,6 +568,7 @@ void Results::setToPrevious()
 	districts[48].setVote("IYIP", 12.17);
 	districts[48].setVote("SP", 1.72);
 	districts[48].setVote("YSP", 1.48);
+	districts[48].setVote("HUDAPAR", 0.21);
 
 	districts[49].setName("Karaman");
 	districts[49].setNoOfSeats(3);
@@ -537,6 +579,7 @@ void Results::setToPrevious()
 	districts[49].setVote("IYIP", 11.54);
 	districts[49].setVote("SP", 1.57);
 	districts[49].setVote("YSP", 1.58);
+	districts[49].setVote("HUDAPAR", 0.23);
 
 	districts[50].setName("Kars");
 	districts[50].setNoOfSeats(3);
@@ -547,6 +590,7 @@ void Results::setToPrevious()
 	districts[50].setVote("IYIP", 7.36);
 	districts[50].setVote("SP", 0.69);
 	districts[50].setVote("YSP", 31.9);
+	districts[50].setVote("HUDAPAR", 0.29);
 
 	districts[51].setName("Kastamonu");
 	districts[51].setNoOfSeats(3);
@@ -557,6 +601,7 @@ void Results::setToPrevious()
 	districts[51].setVote("IYIP", 9.32);
 	districts[51].setVote("SP", 0.94);
 	districts[51].setVote("YSP", 1.13);
+	districts[51].setVote("HUDAPAR", 0.3);
 
 	districts[52].setName("Kayseri");
 	districts[52].setNoOfSeats(10);
@@ -567,6 +612,7 @@ void Results::setToPrevious()
 	districts[52].setVote("IYIP", 11.01);
 	districts[52].setVote("SP", 1.72);
 	districts[52].setVote("YSP", 2.37);
+	districts[52].setVote("HUDAPAR", 0.17);
 
 	districts[53].setName("Kirikkale");
 	districts[53].setNoOfSeats(3);
@@ -577,6 +623,7 @@ void Results::setToPrevious()
 	districts[53].setVote("IYIP", 13.66);
 	districts[53].setVote("SP", 1.2);
 	districts[53].setVote("YSP", 1.59);
+	districts[53].setVote("HUDAPAR", 0.24);
 
 	districts[54].setName("Kirklareli");
 	districts[54].setNoOfSeats(3);
@@ -587,6 +634,7 @@ void Results::setToPrevious()
 	districts[54].setVote("IYIP", 16.32);
 	districts[54].setVote("SP", 0.6);
 	districts[54].setVote("YSP", 3.38);
+	districts[54].setVote("HUDAPAR", 0.17);
 
 	districts[55].setName("Kirsehir");
 	districts[55].setNoOfSeats(2);
@@ -597,6 +645,7 @@ void Results::setToPrevious()
 	districts[55].setVote("IYIP", 10.13);
 	districts[55].setVote("SP", 1);
 	districts[55].setVote("YSP", 4.7);
+	districts[55].setVote("HUDAPAR", 0.15);
 
 	districts[56].setName("Kilis");
 	districts[56].setNoOfSeats(2);
@@ -607,6 +656,7 @@ void Results::setToPrevious()
 	districts[56].setVote("IYIP", 10.16);
 	districts[56].setVote("SP", 1.35);
 	districts[56].setVote("YSP", 2.3);
+	districts[56].setVote("HUDAPAR", 0.18);
 
 	districts[57].setName("Kocaeli");
 	districts[57].setNoOfSeats(13);
@@ -617,6 +667,7 @@ void Results::setToPrevious()
 	districts[57].setVote("IYIP", 10.31);
 	districts[57].setVote("SP", 2.19);
 	districts[57].setVote("YSP", 7.37);
+	districts[57].setVote("HUDAPAR", 0.16);
 
 	districts[58].setName("Konya");
 	districts[58].setNoOfSeats(15);
@@ -627,6 +678,7 @@ void Results::setToPrevious()
 	districts[58].setVote("IYIP", 8.96);
 	districts[58].setVote("SP", 2.33);
 	districts[58].setVote("YSP", 3.71);
+	districts[58].setVote("HUDAPAR", 0.21);
 
 	districts[59].setName("Kutahya");
 	districts[59].setNoOfSeats(5);
@@ -637,6 +689,7 @@ void Results::setToPrevious()
 	districts[59].setVote("IYIP", 10.61);
 	districts[59].setVote("SP", 1.79);
 	districts[59].setVote("YSP", 1.21);
+	districts[59].setVote("HUDAPAR", 0.21);
 
 	districts[60].setName("Malatya");
 	districts[60].setNoOfSeats(6);
@@ -647,6 +700,7 @@ void Results::setToPrevious()
 	districts[60].setVote("IYIP", 4.27);
 	districts[60].setVote("SP", 1.51);
 	districts[60].setVote("YSP", 7.02);
+	districts[60].setVote("HUDAPAR", 0.33);
 
 	districts[61].setName("Manisa");
 	districts[61].setNoOfSeats(10);
@@ -657,6 +711,7 @@ void Results::setToPrevious()
 	districts[61].setVote("IYIP", 13.56);
 	districts[61].setVote("SP", 0.93);
 	districts[61].setVote("YSP", 7);
+	districts[61].setVote("HUDAPAR", 0.27);
 
 	districts[62].setName("Mardin");
 	districts[62].setNoOfSeats(6);
@@ -667,6 +722,7 @@ void Results::setToPrevious()
 	districts[62].setVote("IYIP", 1.13);
 	districts[62].setVote("SP", 0.83);
 	districts[62].setVote("YSP", 59.28);
+	districts[62].setVote("HUDAPAR", 2.08);
 
 	districts[63].setName("Mersin");
 	districts[63].setNoOfSeats(13);
@@ -677,6 +733,7 @@ void Results::setToPrevious()
 	districts[63].setVote("IYIP", 13.56);
 	districts[63].setVote("SP", 0.69);
 	districts[63].setVote("YSP", 16.94);
+	districts[63].setVote("HUDAPAR", 0.4);
 
 	districts[64].setName("Mugla");
 	districts[64].setNoOfSeats(7);
@@ -687,6 +744,7 @@ void Results::setToPrevious()
 	districts[64].setVote("IYIP", 16.48);
 	districts[64].setVote("SP", 0.62);
 	districts[64].setVote("YSP", 6.74);
+	districts[64].setVote("HUDAPAR", 0.22);
 
 	districts[65].setName("Mus");
 	districts[65].setNoOfSeats(4);
@@ -697,6 +755,7 @@ void Results::setToPrevious()
 	districts[65].setVote("IYIP", 4.31);
 	districts[65].setVote("SP", 0.91);
 	districts[65].setVote("YSP", 54.48);
+	districts[65].setVote("HUDAPAR", 1.48);
 
 	districts[66].setName("Nevsehir");
 	districts[66].setNoOfSeats(3);
@@ -707,6 +766,7 @@ void Results::setToPrevious()
 	districts[66].setVote("IYIP", 9);
 	districts[66].setVote("SP", 1.17);
 	districts[66].setVote("YSP", 1.74);
+	districts[66].setVote("HUDAPAR", 0.29);
 
 	districts[67].setName("Nigde");
 	districts[67].setNoOfSeats(3);
@@ -717,6 +777,7 @@ void Results::setToPrevious()
 	districts[67].setVote("IYIP", 11.84);
 	districts[67].setVote("SP", 1.2);
 	districts[67].setVote("YSP", 1.66);
+	districts[67].setVote("HUDAPAR", 0.21);
 
 	districts[68].setName("Ordu");
 	districts[68].setNoOfSeats(6);
@@ -727,6 +788,7 @@ void Results::setToPrevious()
 	districts[68].setVote("IYIP", 8.47);
 	districts[68].setVote("SP", 1.14);
 	districts[68].setVote("YSP", 1.4);
+	districts[68].setVote("HUDAPAR", 0.26);
 
 	districts[69].setName("Osmaniye");
 	districts[69].setNoOfSeats(4);
@@ -737,6 +799,7 @@ void Results::setToPrevious()
 	districts[69].setVote("IYIP", 13.35);
 	districts[69].setVote("SP", 0.98);
 	districts[69].setVote("YSP", 3.59);
+	districts[69].setVote("HUDAPAR", 0.37);
 
 	districts[70].setName("Rize");
 	districts[70].setNoOfSeats(3);
@@ -747,6 +810,7 @@ void Results::setToPrevious()
 	districts[70].setVote("IYIP", 6.01);
 	districts[70].setVote("SP", 1.87);
 	districts[70].setVote("YSP", 1.43);
+	districts[70].setVote("HUDAPAR", 0.11);
 
 	districts[71].setName("Sakarya");
 	districts[71].setNoOfSeats(7);
@@ -757,6 +821,7 @@ void Results::setToPrevious()
 	districts[71].setVote("IYIP", 9.39);
 	districts[71].setVote("SP", 2.05);
 	districts[71].setVote("YSP", 2.7);
+	districts[71].setVote("HUDAPAR", 0.14);
 
 	districts[72].setName("Samsun");
 	districts[72].setNoOfSeats(9);
@@ -767,6 +832,7 @@ void Results::setToPrevious()
 	districts[72].setVote("IYIP", 10.88);
 	districts[72].setVote("SP", 1.42);
 	districts[72].setVote("YSP", 1.77);
+	districts[72].setVote("HUDAPAR", 0.15);
 
 	districts[73].setName("Siirt");
 	districts[73].setNoOfSeats(3);
@@ -777,6 +843,7 @@ void Results::setToPrevious()
 	districts[73].setVote("IYIP", 1.59);
 	districts[73].setVote("SP", 0.94);
 	districts[73].setVote("YSP", 51.07);
+	districts[73].setVote("HUDAPAR", 1.18);
 
 	districts[74].setName("Sinop");
 	districts[74].setNoOfSeats(2);
@@ -787,6 +854,7 @@ void Results::setToPrevious()
 	districts[74].setVote("IYIP", 9.29);
 	districts[74].setVote("SP", 1.12);
 	districts[74].setVote("YSP", 2);
+	districts[74].setVote("HUDAPAR", 0.32);
 
 	districts[75].setName("Sivas");
 	districts[75].setNoOfSeats(5);
@@ -797,6 +865,7 @@ void Results::setToPrevious()
 	districts[75].setVote("IYIP", 6.81);
 	districts[75].setVote("SP", 1.75);
 	districts[75].setVote("YSP", 2.18);
+	districts[75].setVote("HUDAPAR", 0.13);
 
 	districts[76].setName("Sanliurfa");
 	districts[76].setNoOfSeats(14);
@@ -807,6 +876,7 @@ void Results::setToPrevious()
 	districts[76].setVote("IYIP", 1.86);
 	districts[76].setVote("SP", 1.29);
 	districts[76].setVote("YSP", 28.92);
+	districts[76].setVote("HUDAPAR", 1.56);
 
 	districts[77].setName("Sirnak");
 	districts[77].setNoOfSeats(4);
@@ -817,6 +887,7 @@ void Results::setToPrevious()
 	districts[77].setVote("IYIP", 1.98);
 	districts[77].setVote("SP", 0.46);
 	districts[77].setVote("YSP", 70.24);
+	districts[77].setVote("HUDAPAR", 2.08);
 
 	districts[78].setName("Tekirdag");
 	districts[78].setNoOfSeats(7);
@@ -827,6 +898,7 @@ void Results::setToPrevious()
 	districts[78].setVote("IYIP", 11.74);
 	districts[78].setVote("SP", 0.79);
 	districts[78].setVote("YSP", 6.58);
+	districts[78].setVote("HUDAPAR", 0.14);
 
 	districts[79].setName("Tokat");
 	districts[79].setNoOfSeats(5);
@@ -837,6 +909,7 @@ void Results::setToPrevious()
 	districts[79].setVote("IYIP", 9.34);
 	districts[79].setVote("SP", 1.28);
 	districts[79].setVote("YSP", 2.07);
+	districts[79].setVote("HUDAPAR", 0.16);
 
 	districts[80].setName("Trabzon");
 	districts[80].setNoOfSeats(6);
@@ -847,6 +920,7 @@ void Results::setToPrevious()
 	districts[80].setVote("IYIP", 11.17);
 	districts[80].setVote("SP", 2.48);
 	districts[80].setVote("YSP", 1.35);
+	districts[80].setVote("HUDAPAR", 0.12);
 
 	districts[81].setName("Tunceli");
 	districts[81].setNoOfSeats(2);
@@ -857,6 +931,7 @@ void Results::setToPrevious()
 	districts[81].setVote("IYIP", 1.65);
 	districts[81].setVote("SP", 0.32);
 	districts[81].setVote("YSP", 51.03);
+	districts[81].setVote("HUDAPAR", 0.11);
 
 	districts[82].setName("Usak");
 	districts[82].setNoOfSeats(3);
@@ -867,6 +942,7 @@ void Results::setToPrevious()
 	districts[82].setVote("IYIP", 12.7);
 	districts[82].setVote("SP", 1.4);
 	districts[82].setVote("YSP", 3.12);
+	districts[82].setVote("HUDAPAR", 0.25);
 
 	districts[83].setName("Van");
 	districts[83].setNoOfSeats(8);
@@ -877,6 +953,7 @@ void Results::setToPrevious()
 	districts[83].setVote("IYIP", 1.27);
 	districts[83].setVote("SP", 0.8);
 	districts[83].setVote("YSP", 59.32);
+	districts[83].setVote("HUDAPAR", 0.9);
 
 	districts[84].setName("Yalova");
 	districts[84].setNoOfSeats(3);
@@ -887,6 +964,7 @@ void Results::setToPrevious()
 	districts[84].setVote("IYIP", 9.79);
 	districts[84].setVote("SP", 1.3);
 	districts[84].setVote("YSP", 7.97);
+	districts[84].setVote("HUDAPAR", 0.19);
 
 	districts[85].setName("Yozgat");
 	districts[85].setNoOfSeats(4);
@@ -897,6 +975,7 @@ void Results::setToPrevious()
 	districts[85].setVote("IYIP", 7.4);
 	districts[85].setVote("SP", 1.18);
 	districts[85].setVote("YSP", 1.33);
+	districts[85].setVote("HUDAPAR", 0.17);
 
 	districts[86].setName("Zonguldak");
 	districts[86].setNoOfSeats(5);
@@ -907,22 +986,8 @@ void Results::setToPrevious()
 	districts[86].setVote("IYIP", 7.81);
 	districts[86].setVote("SP", 1.76);
 	districts[86].setVote("YSP", 1.9);
+	districts[86].setVote("HUDAPAR", 0.21);
 }
-
-/*
-void Results::setToPrevious()
-{
-	districts[0].setName("Zonguldak");
-	districts[0].setNoOfSeats(5);
-	districts[0].setCensus(459);
-	districts[0].setVote("AKP", 45.97);
-	districts[0].setVote("MHP", 10.87);
-	districts[0].setVote("CHP", 30.77);
-	districts[0].setVote("IYIP", 7.81);
-	districts[0].setVote("SP", 1.76);
-	districts[0].setVote("YSP", 1.9);
-}
-*/
 
 void Results::printLocalResults(ofstream& file)
 {

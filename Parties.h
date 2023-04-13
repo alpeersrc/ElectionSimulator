@@ -2,7 +2,7 @@
 
 #include "Party.h"
 
-#define NO_OF_PARTIES 14
+#define NO_OF_PARTIES 15
 #define NO_OF_ALLIANCES 3
 #define BARRAGE 7.0
 

@@ -57,6 +57,9 @@ Parties::Parties()
 	parties[13].setAlliance(Alliance::Nation);
 	parties[13].setVoterBase("IYIP", 0.75);
 	parties[13].setVoterBase("CHP", 0.25);
+
+	parties[14].setName("HUDAPAR");
+	parties[14].setAlliance(Alliance::Nation);
 }
 
 Party* Parties::getParty(string partyName)
