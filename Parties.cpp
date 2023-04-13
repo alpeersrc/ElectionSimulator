@@ -4,21 +4,33 @@ Parties::Parties()
 {
 	parties[0].setName("AKP");
 	parties[0].setAlliance(Alliance::People);
+	parties[0].setVoterBase("MHP", 0.8);
+	parties[0].setVoterBase("CHP", 0.2);
 
 	parties[1].setName("MHP");
 	parties[1].setAlliance(Alliance::People);
+	parties[1].setVoterBase("IYIP", 0.9);
+	parties[1].setVoterBase("CHP", 0.1);
 
 	parties[2].setName("CHP");
 	parties[2].setAlliance(Alliance::Nation);
+	parties[2].setVoterBase("IYIP", 0.75);
+	parties[2].setVoterBase("HDP", 0.25);
 
 	parties[3].setName("IYIP");
 	parties[3].setAlliance(Alliance::Nation);
+	parties[3].setVoterBase("CHP", 0.9);
+	parties[3].setVoterBase("MHP", 0.1);
 
 	parties[4].setName("SP");
 	parties[4].setAlliance(Alliance::Nation);
+	parties[4].setVoterBase("AKP", 0.75);
+	parties[4].setVoterBase("CHP", 0.25);
 
 	parties[5].setName("YSP");
 	parties[5].setAlliance(Alliance::Labour);
+	parties[5].setVoterBase("CHP", 0.8);
+	parties[5].setVoterBase("AKP", 0.2);
 
 	parties[6].setName("DEVA");
 	parties[6].setAlliance(Alliance::Nation);
@@ -60,6 +72,8 @@ Parties::Parties()
 
 	parties[14].setName("HUDAPAR");
 	parties[14].setAlliance(Alliance::Nation);
+	parties[14].setVoterBase("AKP", 0.9);
+	parties[14].setVoterBase("SP", 0.1);
 }
 
 Party* Parties::getParty(string partyName)
@@ -219,7 +233,14 @@ void Parties::calculate(Parties* previous, Parties* foreseen)
 	for (int i = 0; i < NO_OF_PARTIES; i++) {
 		party = foreseen->getParty(i);
 		if (party->getTrend() == Trend::Declining) {
-			lost = (getParty(i)->getVote() + temp.getParty(i)->getVote()) * (1 - party->getSwing());
+			voterBase1 = party->getVoterBase1();
+			voterBase2 = party->getVoterBase2();
+			voterFactor1 = party->getVoterFactor1();
+			voterFactor2 = party->getVoterFactor2();
+			localVoterBase = getParty(voterBase1)->getVote() * voterFactor1 + getParty(voterBase2)->getVote() * voterFactor2;
+			nationalVoterBase = previous->getParty(voterBase1)->getVote() * voterFactor1 + previous->getParty(voterBase2)->getVote() * voterFactor2;
+
+			lost = (getParty(i)->getVote() + temp.getParty(i)->getVote()) * (1 - party->getSwing()) * localVoterBase / nationalVoterBase;
 			totalLost += lost;
 			temp.getParty(i)->setVote(temp.getParty(i)->getVote() - lost);
 		}
