@@ -1,0 +1,11 @@
+﻿  Parties.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\format(43): warning STL4038: The contents of <format> are available only with C++20 or later.
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(25,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(26,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(30,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(31,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(39,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(40,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(43,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(44,38): warning C4305: 'argument': truncation from 'double' to 'float'
+  ElectionSimulator.vcxproj -> C:\Users\alper\source\repos\ElectionSimulator\x64\Debug\ElectionSimulator.exe

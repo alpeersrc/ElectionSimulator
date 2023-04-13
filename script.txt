@@ -1,0 +1,36 @@
+    code.open("code.txt", ios::in | ios::out | ios::app);
+    prevElection.open("prevElection.csv");
+
+    string line, name, seats, census, akp, mhp, chp, iyip, sp, hdp, pass;
+    int i = 0;
+
+    getline(prevElection, line);
+    while (getline(prevElection, line)) {
+        stringstream str(line);
+        getline(str, name, ',');
+        getline(str, seats, ',');
+        getline(str, census, ',');
+        getline(str, akp, ',');
+        getline(str, mhp, ',');
+        getline(str, chp, ',');
+        getline(str, iyip, ',');
+        getline(str, sp, ',');
+        getline(str, sp, ',');
+        getline(str, sp, ',');
+        getline(str, hdp, ',');
+        getline(str, pass);
+
+        code << "districts[" << i << "].setName(\"" << name << "\");" << endl;
+        code << "districts[" << i << "].setNoOfSeats(" << seats << ");" << endl;
+        code << "districts[" << i << "].setCensus(" << census << ");" << endl;
+        code << "districts[" << i << "].setVote(\"AKP\", " << akp << ");" << endl;
+        code << "districts[" << i << "].setVote(\"MHP\", " << mhp << ");" << endl;
+        code << "districts[" << i << "].setVote(\"CHP\", " << chp << ");" << endl;
+        code << "districts[" << i << "].setVote(\"IYIP\", " << iyip << ");" << endl;
+        code << "districts[" << i << "].setVote(\"SP\", " << sp << ");" << endl;
+        code << "districts[" << i << "].setVote(\"HDP\", " << hdp << ");" << endl << endl;
+        i++;
+    }
+
+    code.close();
+    prevElection.close();
