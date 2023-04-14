@@ -7,6 +7,8 @@
 #include <iomanip>
 #include <format>
 
+#define NO_OF_CANDIDATES 4
+
 using namespace std;
 
 enum class Alliance {
@@ -23,6 +25,13 @@ enum class Trend {
 	Declining
 };
 
+enum class Candidate {
+	Erdogan,
+	Kilicdaroglu,
+	Ince,
+	Ogan
+};
+
 class Party
 {
 public:
@@ -36,6 +45,7 @@ public:
 	void setSwing(float partySwing) { swing = partySwing; };
 	void setOverTheBarrage(bool barrageStatus) { overTheBarrage = barrageStatus; };
 	void setUmbrella(string partyName) { umbrella = partyName; };
+	void setCandidate(Candidate candidateName) { candidate = candidateName; };
 	void grantSeat() { noOfSeats++; };
 	string getName() { return name; };
 	Alliance getAlliance() { return alliance; };
@@ -49,6 +59,7 @@ public:
 	float getSwing() { return swing; };
 	string getUmbrella() { return umbrella; };
 	bool isOverTheBarrage() { return overTheBarrage; };
+	Candidate getCandidate() { return candidate; };
 
 private:
 	string name = "NA";
@@ -63,5 +74,6 @@ private:
 	float swing = 1;
 	bool overTheBarrage = true;
 	string umbrella = "NA";
+	Candidate candidate;
 };
 

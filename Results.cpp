@@ -1023,32 +1023,34 @@ void Results::configureUmbrella()
 	getDistrict("Tunceli")->setUmbrella("TIP", "YSP");
 	getDistrict("Van")->setUmbrella("TIP", "YSP");
 
-	getDistrict("Adiyaman")->setUmbrella("IYIP", "CHP");
-	getDistrict("Bartin")->setUmbrella("IYIP", "CHP");
-	getDistrict("Batman")->setUmbrella("IYIP", "CHP");
-	getDistrict("Duzce")->setUmbrella("IYIP", "CHP");
-	getDistrict("Corum")->setUmbrella("IYIP", "CHP");
-	getDistrict("Erzincan")->setUmbrella("IYIP", "CHP");
-	getDistrict("Hakkari")->setUmbrella("IYIP", "CHP");
-	getDistrict("Rize")->setUmbrella("IYIP", "CHP");
-	getDistrict("Van")->setUmbrella("IYIP", "CHP");
+	getDistrict("Adiyaman")->setUmbrella(Alliance::Nation, "CHP");
+	getDistrict("Bartin")->setUmbrella(Alliance::Nation, "CHP");
+	getDistrict("Batman")->setUmbrella(Alliance::Nation, "CHP");
+	getDistrict("Duzce")->setUmbrella(Alliance::Nation, "CHP");
+	getDistrict("Corum")->setUmbrella(Alliance::Nation, "CHP");
+	getDistrict("Erzincan")->setUmbrella(Alliance::Nation, "CHP");
+	getDistrict("Hakkari")->setUmbrella(Alliance::Nation, "CHP");
+	getDistrict("Rize")->setUmbrella(Alliance::Nation, "CHP");
+	getDistrict("Van")->setUmbrella(Alliance::Nation, "CHP");
 
-	getDistrict("Cankiri")->setUmbrella("CHP", "IYIP");
-	getDistrict("Gumushane")->setUmbrella("CHP", "IYIP");
-	getDistrict("Bitlis")->setUmbrella("CHP", "IYIP");
-	getDistrict("Mus")->setUmbrella("CHP", "IYIP");
-	getDistrict("Yozgat")->setUmbrella("CHP", "IYIP");
-	getDistrict("Aksaray")->setUmbrella("CHP", "IYIP");
-	getDistrict("Bayburt")->setUmbrella("CHP", "IYIP");
+	getDistrict("Cankiri")->setUmbrella(Alliance::Nation, "IYIP");
+	getDistrict("Gumushane")->setUmbrella(Alliance::Nation, "IYIP");
+	getDistrict("Bitlis")->setUmbrella(Alliance::Nation, "IYIP");
+	getDistrict("Mus")->setUmbrella(Alliance::Nation, "IYIP");
+	getDistrict("Yozgat")->setUmbrella(Alliance::Nation, "IYIP");
+	getDistrict("Aksaray")->setUmbrella(Alliance::Nation, "IYIP");
+	getDistrict("Bayburt")->setUmbrella(Alliance::Nation, "IYIP");
 }
 
-void Results::printLocalResults(ofstream& file)
+void Results::printLocalResults(ofstream& parliament, ofstream& president)
 {
-	for (int i = 0; i < NO_OF_DISTRICTS; i++)
-		districts[i].printResults(file);
+	for (int i = 0; i < NO_OF_DISTRICTS; i++) {
+		districts[i].printParliamentaryResults(parliament);
+		districts[i].printPresidentialResults(president);
+	}
 }
 
-void Results::printNationalResults(ofstream& file)
+void Results::printNationalResults(ofstream& parliament, ofstream& president)
 {
 	Parties nationalResults;
 	string partyName;
@@ -1077,7 +1079,29 @@ void Results::printNationalResults(ofstream& file)
 
 		stringstream stream;
 		stream << fixed << setprecision(2) << votes;
-		file << partyName << "; " << stream.str() << "; " << nationalResults.getParty(partyName)->getSeats() << endl;
+		parliament << partyName << "; " << stream.str() << "; " << nationalResults.getParty(partyName)->getSeats() << endl;
+	}
+
+	string name;
+	for (int i = 0; i < NO_OF_CANDIDATES; i++) {
+		votes = 0;
+		if (i == 0)
+			name = "Erdogan";
+		else if (i == 1)
+			name = "Kilicdaroglu";
+		else if (i == 2)
+			name = "Ince";
+		else
+			name = "Ogan";
+
+		for (int j = 0; j < NO_OF_PARTIES; j++) {
+			if ((int)nationalResults.getParty(j)->getCandidate() == i)
+				votes += nationalResults.getParty(j)->getVote();
+		}
+
+		stringstream stream;
+		stream << fixed << setprecision(2) << votes;
+		president << name << "; " << stream.str() << endl;
 	}
 }
 

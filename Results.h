@@ -9,8 +9,8 @@ class Results
 public:
 	Results();
 	void setToPrevious();
-	void printLocalResults(ofstream& file);
-	void printNationalResults(ofstream& file);
+	void printLocalResults(ofstream& parliament, ofstream& president);
+	void printNationalResults(ofstream& parliament, ofstream& president);
 	void distributeSeats();
 	void calculate();
 	void determineTrends();

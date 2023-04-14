@@ -4,81 +4,96 @@ Parties::Parties()
 {
 	parties[0].setName("AKP");
 	parties[0].setAlliance(Alliance::People);
-	parties[0].setVoterBase("MHP", 0.8);
-	parties[0].setVoterBase("CHP", 0.2);
+	parties[0].setVoterBase("CHP", 0.67);
+	parties[0].setVoterBase("IYIP", 0.33);
+	parties[0].setCandidate(Candidate::Erdogan);
 
 	parties[1].setName("MHP");
 	parties[1].setAlliance(Alliance::People);
 	parties[1].setVoterBase("IYIP", 0.9);
 	parties[1].setVoterBase("CHP", 0.1);
+	parties[1].setCandidate(Candidate::Erdogan);
 
 	parties[2].setName("CHP");
 	parties[2].setAlliance(Alliance::Nation);
-	parties[2].setVoterBase("IYIP", 0.75);
-	parties[2].setVoterBase("YSP", 0.25);
+	parties[2].setVoterBase("IYIP", 0.67);
+	parties[2].setVoterBase("YSP", 0.33);
+	parties[2].setCandidate(Candidate::Kilicdaroglu);
 
 	parties[3].setName("IYIP");
 	parties[3].setAlliance(Alliance::Nation);
-	parties[3].setVoterBase("CHP", 0.9);
-	parties[3].setVoterBase("MHP", 0.1);
+	parties[3].setVoterBase("CHP", 0.5);
+	parties[3].setVoterBase("MHP", 0.5);
+	parties[3].setCandidate(Candidate::Kilicdaroglu);
 
 	parties[4].setName("SP");
 	parties[4].setAlliance(Alliance::Nation);
-	parties[4].setVoterBase("AKP", 0.75);
-	parties[4].setVoterBase("CHP", 0.25);
+	parties[4].setVoterBase("AKP", 0.8);
+	parties[4].setVoterBase("CHP", 0.2);
 	parties[4].setUmbrella("CHP");
+	parties[4].setCandidate(Candidate::Kilicdaroglu);
 
 	parties[5].setName("YSP");
 	parties[5].setAlliance(Alliance::Labour);
 	parties[5].setVoterBase("CHP", 0.8);
 	parties[5].setVoterBase("AKP", 0.2);
+	parties[5].setCandidate(Candidate::Kilicdaroglu);
 
 	parties[6].setName("DEVA");
 	parties[6].setAlliance(Alliance::Nation);
 	parties[6].setVoterBase("AKP", 0.9);
 	parties[6].setVoterBase("CHP", 0.1);
 	parties[6].setUmbrella("CHP");
+	parties[6].setCandidate(Candidate::Kilicdaroglu);
 
 	parties[7].setName("GP");
 	parties[7].setAlliance(Alliance::Nation);
 	parties[7].setVoterBase("AKP", 0.9);
 	parties[7].setVoterBase("YSP", 0.1);
 	parties[7].setUmbrella("GP");
+	parties[7].setCandidate(Candidate::Kilicdaroglu);
 
 	parties[8].setName("TIP");
 	parties[8].setAlliance(Alliance::Labour);
 	parties[8].setVoterBase("CHP", 0.75);
 	parties[8].setVoterBase("YSP", 0.25);
+	parties[8].setCandidate(Candidate::Kilicdaroglu);
 
 	parties[9].setName("MP");
 	parties[9].setVoterBase("CHP", 0.8);
 	parties[9].setVoterBase("IYIP", 0.2);
+	parties[9].setCandidate(Candidate::Ince);
 
 	parties[10].setName("ZP");
 	parties[10].setVoterBase("MHP", 0.8);
 	parties[10].setVoterBase("IYIP", 0.2);
+	parties[10].setCandidate(Candidate::Ogan);
 
 	parties[11].setName("BBP");
 	parties[11].setAlliance(Alliance::People);
 	parties[11].setVoterBase("AKP", 0.5);
 	parties[11].setVoterBase("MHP", 0.5);
+	parties[11].setCandidate(Candidate::Erdogan);
 
 	parties[12].setName("YRP");
 	parties[12].setAlliance(Alliance::People);
 	parties[12].setVoterBase("AKP", 0.5);
 	parties[12].setVoterBase("SP", 0.5);
+	parties[12].setCandidate(Candidate::Erdogan);
 
 	parties[13].setName("DP");
 	parties[13].setAlliance(Alliance::Nation);
 	parties[13].setVoterBase("IYIP", 0.75);
 	parties[13].setVoterBase("CHP", 0.25);
 	parties[13].setUmbrella("CHP");
+	parties[13].setCandidate(Candidate::Kilicdaroglu);
 
 	parties[14].setName("HUDAPAR");
 	parties[14].setAlliance(Alliance::Nation);
-	parties[14].setVoterBase("AKP", 0.9);
-	parties[14].setVoterBase("SP", 0.1);
+	parties[14].setVoterBase("AKP", 0.5);
+	parties[14].setVoterBase("SP", 0.5);
 	parties[14].setUmbrella("AKP");
+	parties[14].setCandidate(Candidate::Erdogan);
 }
 
 Party* Parties::getParty(string partyName)
@@ -90,7 +105,7 @@ Party* Parties::getParty(string partyName)
 	return nullptr;
 }
 
-void Parties::printResults(ofstream& file)
+void Parties::printParliamentaryResults(ofstream& file)
 {
 	for (int i = 0; i < NO_OF_PARTIES; i++) {
 		if (parties[i].getVote() < 0.01)
@@ -262,7 +277,7 @@ void Parties::calculate(Parties* previous, Parties* foreseen)
 			voterFactor2 = party->getVoterFactor2();
 			localVoterBase = getParty(voterBase1)->getVote() * voterFactor1 + getParty(voterBase2)->getVote() * voterFactor2;
 			nationalVoterBase = previous->getParty(voterBase1)->getVote() * voterFactor1 + previous->getParty(voterBase2)->getVote() * voterFactor2;
-			lost = (getParty(i)->getVote() + temp.getParty(i)->getVote()) * (1 - party->getSwing()) * localVoterBase / nationalVoterBase;
+			lost = (getParty(i)->getVote() + temp.getParty(i)->getVote()) * (1 - party->getSwing()) * (localVoterBase / nationalVoterBase);
 			temp.getParty(i)->setVote(temp.getParty(i)->getVote() - lost);
 
 			for (int j = 0; j < NO_OF_PARTIES; j++) {
@@ -274,7 +289,7 @@ void Parties::calculate(Parties* previous, Parties* foreseen)
 					voterFactor2 = party->getVoterFactor2();
 					localVoterBase = getParty(voterBase1)->getVote() * voterFactor1 + getParty(voterBase2)->getVote() * voterFactor2;
 					nationalVoterBase = previous->getParty(voterBase1)->getVote() * voterFactor1 + previous->getParty(voterBase2)->getVote() * voterFactor2;
-					stolen = lost * party->getVote() * (1 - (1 / party->getSwing())) / totalPool * localVoterBase / nationalVoterBase;
+					stolen = lost * party->getVote() * (1 - (1 / party->getSwing())) * (localVoterBase / nationalVoterBase) / totalPool;
 					temp.getParty(j)->setVote(temp.getParty(j)->getVote() + stolen);
 				}
 			}

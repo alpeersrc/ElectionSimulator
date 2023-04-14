@@ -1,13 +1,17 @@
 #include "Results.h"
 
 Results results;
-ofstream brokenDown;
-ofstream overall;
+ofstream brokenDownParliament;
+ofstream overallParliament;
+ofstream brokenDownPresident;
+ofstream overallPresident;
 
 int main()
 {
-	brokenDown.open("results_brokenDown.csv");
-	overall.open("results_overall.csv");
+	brokenDownParliament.open("results_brokenDown_parliament.csv");
+	overallParliament.open("results_overall_parliament.csv");
+	brokenDownPresident.open("results_brokenDown_president.csv");
+	overallPresident.open("results_overall_president.csv");
 
 	char input;
 	cout << "Use default or input? (d/i)" << endl;
@@ -20,13 +24,12 @@ int main()
 	results.configureUmbrella();
 	results.calculate();
 	results.distributeSeats();
-	results.printLocalResults(brokenDown);
-	results.printNationalResults(overall);
-	overall.close();
-	brokenDown.close();
-
-	cout << "See results_overall.csv for overall results." << endl;
-	cout << "See results_brokenDown for results in every district." << endl;
+	results.printLocalResults(brokenDownParliament, brokenDownPresident);
+	results.printNationalResults(overallParliament, overallPresident);
+	overallParliament.close();
+	brokenDownParliament.close();
+	overallPresident.close();
+	brokenDownPresident.close();
 
 	return 0;
 }
