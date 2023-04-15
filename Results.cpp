@@ -2,12 +2,12 @@
 
 Results::Results()
 {
-	foreseen.getParty("AKP")->setVote(31.2);
+	foreseen.getParty("AKP")->setVote(31.1);
 	foreseen.getParty("MHP")->setVote(6.2);
 	foreseen.getParty("CHP")->setVote(25.2);
 	foreseen.getParty("IYIP")->setVote(14.3);
 	foreseen.getParty("SP")->setVote(0.8);
-	foreseen.getParty("YSP")->setVote(8.8);
+	foreseen.getParty("YSP")->setVote(8.7);
 	foreseen.getParty("DEVA")->setVote(1.4);
 	foreseen.getParty("GP")->setVote(1.0);
 	foreseen.getParty("TIP")->setVote(2.0);
@@ -17,6 +17,8 @@ Results::Results()
 	foreseen.getParty("YRP")->setVote(1.5);
 	foreseen.getParty("DP")->setVote(0.1);
 	foreseen.getParty("HUDAPAR")->setVote(0.4);
+	foreseen.getParty("EMEP")->setVote(0.1);
+	foreseen.getParty("DSP")->setVote(0.1);
 	
 	previous.getParty("AKP")->setVote(42.6);
 	previous.getParty("MHP")->setVote(11.1);
@@ -1040,6 +1042,132 @@ void Results::configureUmbrella()
 	getDistrict("Yozgat")->setUmbrella(Alliance::Nation, "IYIP");
 	getDistrict("Aksaray")->setUmbrella(Alliance::Nation, "IYIP");
 	getDistrict("Bayburt")->setUmbrella(Alliance::Nation, "IYIP");
+
+	getDistrict("Istanbul I")->setJointList("DP", "CHP", 9);
+	getDistrict("Izmir II")->setJointList("DP", "CHP", 2);
+	getDistrict("Izmir II")->setJointList("DP", "CHP", 5);
+
+	getDistrict("Ankara I")->setJointList("IYIP", "CHP", 5);
+	getDistrict("Ankara II")->setJointList("IYIP", "CHP", 4);
+	getDistrict("Adiyaman")->setJointList("IYIP", "CHP", 2);
+	getDistrict("Bartin")->setJointList("IYIP", "CHP", 2);
+	getDistrict("Batman")->setJointList("IYIP", "CHP", 2);
+	getDistrict("Duzce")->setJointList("IYIP", "CHP", 2);
+	getDistrict("Corum")->setJointList("IYIP", "CHP", 2);
+	getDistrict("Erzincan")->setJointList("IYIP", "CHP", 2);
+	getDistrict("Hakkari")->setJointList("IYIP", "CHP", 2);
+	getDistrict("Istanbul I")->setJointList("IYIP", "CHP", 5);
+	getDistrict("Istanbul I")->setJointList("IYIP", "CHP", 11);
+	getDistrict("Istanbul II")->setJointList("IYIP", "CHP", 9);
+	getDistrict("Rize")->setJointList("IYIP", "CHP", 2);
+	getDistrict("Van")->setJointList("IYIP", "CHP", 2);
+
+	getDistrict("Adana")->setJointList("DEVA", "CHP", 4);
+	getDistrict("Ankara I")->setJointList("DEVA", "CHP", 4);
+	getDistrict("Ankara II")->setJointList("DEVA", "CHP", 2);
+	getDistrict("Balikesir")->setJointList("DEVA", "CHP", 3);
+	getDistrict("Diyarbakir")->setJointList("DEVA", "CHP", 2);
+	getDistrict("Elazig")->setJointList("DEVA", "CHP", 3);
+	getDistrict("Erzurum")->setJointList("DEVA", "CHP", 3);
+	getDistrict("Gaziantep")->setJointList("DEVA", "CHP", 3);
+	getDistrict("Igdir")->setJointList("DEVA", "CHP", 1);
+	getDistrict("Istanbul I")->setJointList("DEVA", "CHP", 7);
+	getDistrict("Istanbul I")->setJointList("DEVA", "CHP", 8);
+	getDistrict("Istanbul II")->setJointList("DEVA", "CHP", 8);
+	getDistrict("Istanbul II")->setJointList("DEVA", "CHP", 10);
+	getDistrict("Istanbul III")->setJointList("DEVA", "CHP", 6);
+	getDistrict("Istanbul III")->setJointList("DEVA", "CHP", 10);
+	getDistrict("Izmir I")->setJointList("DEVA", "CHP", 6);
+	getDistrict("Kahramanmaras")->setJointList("DEVA", "CHP", 2);
+	getDistrict("Kayseri")->setJointList("DEVA", "CHP", 3);
+	getDistrict("Manisa")->setJointList("DEVA", "CHP", 4);
+	getDistrict("Mersin")->setJointList("DEVA", "CHP", 3);
+	getDistrict("Siirt")->setJointList("DEVA", "CHP", 1);
+	getDistrict("Sivas")->setJointList("DEVA", "CHP", 2);
+	getDistrict("Sanliurfa")->setJointList("DEVA", "CHP", 3);
+	getDistrict("Tekirdag")->setJointList("DEVA", "CHP", 3);
+	getDistrict("Yozgat")->setJointList("DEVA", "CHP", 3);
+	getDistrict("Zonguldak")->setJointList("DEVA", "CHP", 3);
+
+	getDistrict("Ankara I")->setJointList("GP", "CHP", 5);
+	getDistrict("Antalya")->setJointList("GP", "CHP", 4);
+	getDistrict("Bursa I")->setJointList("GP", "CHP", 6);
+	getDistrict("Bursa II")->setJointList("GP", "CHP", 2);
+	getDistrict("Canakkale")->setJointList("GP", "CHP", 3);
+	getDistrict("Denizli")->setJointList("GP", "CHP", 3);
+	getDistrict("Istanbul I")->setJointList("GP", "CHP", 10);
+	getDistrict("Istanbul II")->setJointList("GP", "CHP", 7);
+	getDistrict("Istanbul II")->setJointList("GP", "CHP", 8);
+	getDistrict("Istanbul III")->setJointList("GP", "CHP", 8);
+	getDistrict("Istanbul III")->setJointList("GP", "CHP", 15);
+	getDistrict("Izmir II")->setJointList("GP", "CHP", 7);
+	getDistrict("Kayseri")->setJointList("GP", "CHP", 4);
+	getDistrict("Kocaeli")->setJointList("GP", "CHP", 5);
+	getDistrict("Konya")->setJointList("GP", "CHP", 2);
+	getDistrict("Konya")->setJointList("GP", "CHP", 4);
+	getDistrict("Mugla")->setJointList("GP", "CHP", 4);
+	getDistrict("Samsun")->setJointList("GP", "CHP", 3);
+	getDistrict("Sanliurfa")->setJointList("GP", "CHP", 4);
+	getDistrict("Sirnak")->setJointList("GP", "CHP", 1);
+
+	getDistrict("Afyonkarahisar")->setJointList("SP", "CHP", 2);
+	getDistrict("Ankara III")->setJointList("SP", "CHP", 3);
+	getDistrict("Antalya")->setJointList("SP", "CHP", 5);
+	getDistrict("Bingol")->setJointList("SP", "CHP", 1);
+	getDistrict("Bursa I")->setJointList("SP", "CHP", 3);
+	getDistrict("Corum")->setJointList("SP", "CHP", 4);
+	getDistrict("Diyarbakir")->setJointList("SP", "CHP", 3);
+	getDistrict("Elazig")->setJointList("SP", "CHP", 2);
+	getDistrict("Erzurum")->setJointList("SP", "CHP", 2);
+	getDistrict("Gaziantep")->setJointList("SP", "CHP", 9);
+	getDistrict("Hatay")->setJointList("SP", "CHP", 4);
+	getDistrict("Isparta")->setJointList("SP", "CHP", 3);
+	getDistrict("Istanbul I")->setJointList("SP", "CHP", 5);
+	getDistrict("Istanbul II")->setJointList("SP", "CHP", 5);
+	getDistrict("Istanbul III")->setJointList("SP", "CHP", 7);
+	getDistrict("Kastamonu")->setJointList("SP", "CHP", 2);
+	getDistrict("Kayseri")->setJointList("SP", "CHP", 2);
+	getDistrict("Kocaeli")->setJointList("SP", "CHP", 3);
+	getDistrict("Kutahya")->setJointList("SP", "CHP", 2);
+	getDistrict("Ordu")->setJointList("SP", "CHP", 3);
+	getDistrict("Rize")->setJointList("SP", "CHP", 3);
+	getDistrict("Sakarya")->setJointList("SP", "CHP", 7);
+	getDistrict("Samsun")->setJointList("SP", "CHP", 2);
+	getDistrict("Sanliurfa")->setJointList("SP", "CHP", 8);
+
+	getDistrict("Aksaray")->setJointList("CHP", "IYIP", 2);
+	getDistrict("Bitlis")->setJointList("CHP", "IYIP", 2);
+	getDistrict("Cankiri")->setJointList("CHP", "IYIP", 2);
+	getDistrict("Mus")->setJointList("CHP", "IYIP", 2);
+	getDistrict("Yozgat")->setJointList("CHP", "IYIP", 2);
+
+	getDistrict("Ankara I")->setJointList("DSP", "AKP", 9);
+	getDistrict("Ankara II")->setJointList("DSP", "AKP", 9);
+	getDistrict("Istanbul I")->setJointList("DSP", "AKP", 6);
+	getDistrict("Istanbul II")->setJointList("DSP", "AKP", 4);
+
+	getDistrict("Batman")->setJointList("HUDAPAR", "AKP", 2);
+	getDistrict("Gaziantep")->setJointList("HUDAPAR", "AKP", 6);
+	getDistrict("Istanbul III")->setJointList("HUDAPAR", "AKP", 4);
+	getDistrict("Mersin")->setJointList("HUDAPAR", "AKP", 4);
+
+	getDistrict("Adana")->setJointList("EMEP", "YSP", 1);
+	getDistrict("Ankara I")->setJointList("EMEP", "YSP", 2);
+	getDistrict("Ankara I")->setJointList("EMEP", "YSP", 6);
+	getDistrict("Ankara III")->setJointList("EMEP", "YSP", 2);
+	getDistrict("Antalya")->setJointList("EMEP", "YSP", 4);
+	getDistrict("Bolu")->setJointList("EMEP", "YSP", 1);
+	getDistrict("Diyarbakir")->setJointList("EMEP", "YSP", 7);
+	getDistrict("Erzincan")->setJointList("EMEP", "YSP", 1);
+	getDistrict("Eskisehir")->setJointList("EMEP", "YSP", 1);
+	getDistrict("Gaziantep")->setJointList("EMEP", "YSP", 1);
+	getDistrict("Istanbul I")->setJointList("EMEP", "YSP", 1);
+	getDistrict("Istanbul I")->setJointList("EMEP", "YSP", 3);
+	getDistrict("Istanbul III")->setJointList("EMEP", "YSP", 1);
+	getDistrict("Istanbul III")->setJointList("EMEP", "YSP", 2);
+	getDistrict("Istanbul III")->setJointList("EMEP", "YSP", 5);
+	getDistrict("Izmir I")->setJointList("EMEP", "YSP", 1);
+	getDistrict("Mersin")->setJointList("EMEP", "YSP", 2);
 }
 
 void Results::printLocalResults(ofstream& parliament, ofstream& president)
@@ -1100,14 +1228,20 @@ void Results::printNationalResults(ofstream& parliament, ofstream& president)
 
 				stringstream stream;
 				stream << fixed << setprecision(2) << nationalResults.getParty(j)->getVote();
-				parliament << nationalResults.getParty(j)->getName() << "; " << stream.str() << "; " << nationalResults.getParty(j)->getSeats() << endl;
+				parliament << nationalResults.getParty(j)->getName() << "; " << stream.str() << "; "; 
+				stream.str("");
+				stream << fixed << setprecision(2) << nationalResults.getParty(j)->getVote() - previous.getParty(j)->getVote();
+				parliament << stream.str() << "; " << nationalResults.getParty(j)->getSeats() << endl;
 			}
 			break;
 		}
 
 		stringstream stream;
 		stream << fixed << setprecision(2) << nationalResults.getParty(index)->getVote();
-		parliament << nationalResults.getParty(index)->getName() << "; " << stream.str() << "; " << nationalResults.getParty(index)->getSeats() << endl;
+		parliament << nationalResults.getParty(index)->getName() << "; " << stream.str() << "; ";
+		stream.str("");
+		stream << fixed << setprecision(2) << nationalResults.getParty(index)->getVote() - previous.getParty(index)->getVote();
+		parliament << stream.str() << "; " << nationalResults.getParty(index)->getSeats() << endl;
 	}
 
 	string name;

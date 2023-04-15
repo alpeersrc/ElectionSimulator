@@ -35,14 +35,14 @@ Parties::Parties()
 
 	parties[5].setName("YSP");
 	parties[5].setAlliance(Alliance::Labour);
-	parties[5].setVoterBase("CHP", 0.8);
-	parties[5].setVoterBase("AKP", 0.2);
+	parties[5].setVoterBase("CHP", 0.9);
+	parties[5].setVoterBase("AKP", 0.1);
 	parties[5].setCandidate(Candidate::Kilicdaroglu);
 
 	parties[6].setName("DEVA");
 	parties[6].setAlliance(Alliance::Nation);
-	parties[6].setVoterBase("AKP", 0.9);
-	parties[6].setVoterBase("CHP", 0.1);
+	parties[6].setVoterBase("AKP", 0.8);
+	parties[6].setVoterBase("CHP", 0.2);
 	parties[6].setUmbrella("CHP");
 	parties[6].setCandidate(Candidate::Kilicdaroglu);
 
@@ -55,8 +55,8 @@ Parties::Parties()
 
 	parties[8].setName("TIP");
 	parties[8].setAlliance(Alliance::Labour);
-	parties[8].setVoterBase("CHP", 0.75);
-	parties[8].setVoterBase("YSP", 0.25);
+	parties[8].setVoterBase("CHP", 0.8);
+	parties[8].setVoterBase("YSP", 0.2);
 	parties[8].setCandidate(Candidate::Kilicdaroglu);
 
 	parties[9].setName("MP");
@@ -65,8 +65,8 @@ Parties::Parties()
 	parties[9].setCandidate(Candidate::Ince);
 
 	parties[10].setName("ZP");
-	parties[10].setVoterBase("MHP", 0.8);
-	parties[10].setVoterBase("IYIP", 0.2);
+	parties[10].setVoterBase("MHP", 0.67);
+	parties[10].setVoterBase("IYIP", 0.33);
 	parties[10].setCandidate(Candidate::Ogan);
 
 	parties[11].setName("BBP");
@@ -90,10 +90,24 @@ Parties::Parties()
 
 	parties[14].setName("HUDAPAR");
 	parties[14].setAlliance(Alliance::Nation);
-	parties[14].setVoterBase("AKP", 0.5);
-	parties[14].setVoterBase("SP", 0.5);
+	parties[14].setVoterBase("AKP", 0.75);
+	parties[14].setVoterBase("SP", 0.25);
 	parties[14].setUmbrella("AKP");
 	parties[14].setCandidate(Candidate::Erdogan);
+
+	parties[15].setName("EMEP");
+	parties[15].setAlliance(Alliance::Labour);
+	parties[15].setVoterBase("YSP", 0.95);
+	parties[15].setVoterBase("CHP", 0.05);
+	parties[15].setUmbrella("YSP");
+	parties[15].setCandidate(Candidate::Kilicdaroglu);
+
+	parties[16].setName("DSP");
+	parties[16].setAlliance(Alliance::People);
+	parties[16].setVoterBase("CHP", 0.95);
+	parties[16].setVoterBase("IYIP", 0.05);
+	parties[16].setUmbrella("AKP");
+	parties[16].setCandidate(Candidate::Erdogan);
 }
 
 Party* Parties::getParty(string partyName)
@@ -127,14 +141,20 @@ void Parties::printParliamentaryResults(ofstream& file)
 
 				stringstream stream;
 				stream << fixed << setprecision(2) << parties[j].getVote();
-				file << parties[j].getName() << "; " << stream.str() << "; " << parties[j].getSeats() << endl;
+				file << parties[j].getName() << "; " << stream.str() << "; ";
+				stream.str("");
+				stream << fixed << setprecision(2) << parties[j].getVote() - prevParties[j].getVote();
+				file << stream.str() << "; " << parties[j].getSeats() << endl;
 			}
 			break;
 		}
 
 		stringstream stream;
 		stream << fixed << setprecision(2) << parties[index].getVote();
-		file << parties[index].getName() << "; " << stream.str() << "; " << parties[index].getSeats() << endl;
+		file << parties[index].getName() << "; " << stream.str() << "; ";
+		stream.str("");
+		stream << fixed << setprecision(2) << parties[index].getVote() - prevParties[index].getVote();
+		file << stream.str() << "; " << parties[index].getSeats() << endl;
 	}
 }
 
@@ -160,6 +180,25 @@ void Parties::distributeSeats(int noOfSeats)
 			getParty(winner)->grantSeat();
 		else
 			return;
+	}
+
+	string listedParty;
+	for (int i = 0; i < NO_OF_PARTIES; i++) {
+		listedParty = parties[i].getListedParty1();
+		if (listedParty != "NA") {
+			if (getParty(listedParty)->getSeats() >= parties[i].getListOrder1()) {
+				getParty(listedParty)->takeSeat();
+				parties[i].grantSeat();
+			}
+		}
+
+		listedParty = parties[i].getListedParty2();
+		if (listedParty != "NA") {
+			if (getParty(listedParty)->getSeats() >= parties[i].getListOrder2()) {
+				getParty(listedParty)->takeSeat();
+				parties[i].grantSeat();
+			}
+		}
 	}
 }
 
@@ -234,6 +273,8 @@ void Parties::assessBarrage()
 
 void Parties::calculate(Parties* previous, Parties* foreseen)
 {
+	backUp();
+
 	// assess the barrage situation
 	for (int i = 0; i < NO_OF_PARTIES; i++)
 		getParty(i)->setOverTheBarrage(foreseen->getParty(i)->isOverTheBarrage());
@@ -337,4 +378,12 @@ void Parties::calculate(Parties* previous, Parties* foreseen)
 
 	for (int i = 0; i < NO_OF_PARTIES; i++)
 		getParty(i)->setVote(getParty(i)->getVote() / sum * 100);
+}
+
+void Parties::backUp()
+{
+	for (int i = 0; i < NO_OF_PARTIES; i++) {
+		prevParties[i].setVote(parties[i].getVote());
+		prevParties[i].setName(parties[i].getName());
+	}
 }

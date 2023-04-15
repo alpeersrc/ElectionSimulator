@@ -11,6 +11,7 @@ public:
 	void setNoOfSeats(int number) { noOfSeats = number; };
 	void setUmbrella(string party, string umbrellaParty) { parties.getParty(party)->setUmbrella(umbrellaParty); };
 	void setUmbrella(Alliance alliance, string umbrellaParty);
+	void setJointList(string party, string listedParty, int order) { parties.getParty(party)->setJointList(listedParty, order); };
 	string getName() { return name; };
 	int getCensus() { return census; };
 	float getVote(string partyName) { return parties.getParty(partyName)->getVote(); };

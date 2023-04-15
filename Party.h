@@ -46,7 +46,9 @@ public:
 	void setOverTheBarrage(bool barrageStatus) { overTheBarrage = barrageStatus; };
 	void setUmbrella(string partyName) { umbrella = partyName; };
 	void setCandidate(Candidate candidateName) { candidate = candidateName; };
+	void setJointList(string partyName, int listOrder);
 	void grantSeat() { noOfSeats++; };
+	void takeSeat() { noOfSeats--; };
 	string getName() { return name; };
 	Alliance getAlliance() { return alliance; };
 	Trend getTrend() { return trend; };
@@ -58,6 +60,10 @@ public:
 	float getVoterFactor2() { return voterFactor2; };
 	float getSwing() { return swing; };
 	string getUmbrella() { return umbrella; };
+	string getListedParty1() { return jointList1; };
+	string getListedParty2() { return jointList2; };
+	int getListOrder1() { return jointListOrder1; };
+	int getListOrder2() { return jointListOrder2; };
 	bool isOverTheBarrage() { return overTheBarrage; };
 	Candidate getCandidate() { return candidate; };
 
@@ -74,6 +80,10 @@ private:
 	float swing = 1;
 	bool overTheBarrage = true;
 	string umbrella = "NA";
+	string jointList1 = "NA";
+	string jointList2 = "NA";
+	int jointListOrder1 = 99;
+	int jointListOrder2 = 99;
 	Candidate candidate;
 };
 
