@@ -10,28 +10,43 @@ void District::printParliamentaryResults(ofstream& file)
 void District::printPresidentialResults(ofstream& file)
 {
 	file << name << endl;
-	float vote;
+	float vote[NO_OF_CANDIDATES];
 	string name;
 	for (int i = 0; i < NO_OF_CANDIDATES; i++) {
-		vote = 0;
-		if (i == 0)
+		vote[i] = 0;
+		for (int j = 0; j < NO_OF_PARTIES; j++) {
+			if ((int)parties.getParty(j)->getCandidate() == i)
+				vote[i] += parties.getParty(j)->getVote();
+		}
+	}
+
+	float prevGreatest = 100;
+	float greatest;
+	int index = 0;
+	for (int i = 0; i < NO_OF_CANDIDATES; i++) {
+		greatest = 0;
+		for (int j = 0; j < NO_OF_CANDIDATES; j++) {
+			if (vote[j] > greatest && vote[j] < prevGreatest) {
+				index = j;
+				greatest = vote[j];
+			}
+		}
+		prevGreatest = greatest;
+
+		if (index == 0)
 			name = "Erdogan";
-		else if (i == 1)
+		else if (index == 1)
 			name = "Kilicdaroglu";
-		else if (i == 2)
+		else if (index == 2)
 			name = "Ince";
 		else
 			name = "Ogan";
 
-		for (int j = 0; j < NO_OF_PARTIES; j++) {
-			if ((int)parties.getParty(j)->getCandidate() == i)
-				vote += parties.getParty(j)->getVote();
-		}
-
 		stringstream stream;
-		stream << fixed << setprecision(2) << vote;
+		stream << fixed << setprecision(2) << vote[index];
 		file << name << "; " << stream.str() << endl;
 	}
+
 	file << endl;
 }
 

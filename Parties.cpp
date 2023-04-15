@@ -107,13 +107,34 @@ Party* Parties::getParty(string partyName)
 
 void Parties::printParliamentaryResults(ofstream& file)
 {
+	float prevGreatest, greatest;
+	int index = 0;
+	prevGreatest = 100;
 	for (int i = 0; i < NO_OF_PARTIES; i++) {
-		if (parties[i].getVote() < 0.01)
-			continue;
+		greatest = 0;
+		for (int j = 0; j < NO_OF_PARTIES; j++) {
+			if (parties[j].getVote() >= greatest && parties[j].getVote() < prevGreatest) {
+				index = j;
+				greatest = parties[j].getVote();
+			}
+		}
+		prevGreatest = greatest;
+
+		if (parties[index].getVote() == 0) {
+			for (int j = 0; j < NO_OF_PARTIES; j++) { 
+				if (parties[j].getVote() != 0 || parties[j].getSeats() == 0)
+					continue;
+
+				stringstream stream;
+				stream << fixed << setprecision(2) << parties[j].getVote();
+				file << parties[j].getName() << "; " << stream.str() << "; " << parties[j].getSeats() << endl;
+			}
+			break;
+		}
 
 		stringstream stream;
-		stream << fixed << setprecision(2) << parties[i].getVote();
-		file << parties[i].getName() << "; " << stream.str() << "; " << parties[i].getSeats() << endl;
+		stream << fixed << setprecision(2) << parties[index].getVote();
+		file << parties[index].getName() << "; " << stream.str() << "; " << parties[index].getSeats() << endl;
 	}
 }
 

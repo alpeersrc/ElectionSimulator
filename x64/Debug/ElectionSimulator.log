@@ -1,3 +1,21 @@
-﻿  District.cpp
+﻿  Parties.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\format(43): warning STL4038: The contents of <format> are available only with C++20 or later.
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(7,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(8,38): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(13,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(14,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(19,38): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(20,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(31,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(32,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(38,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(39,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(44,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(45,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(51,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(52,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(63,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(64,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(68,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\alper\source\repos\ElectionSimulator\Parties.cpp(69,38): warning C4305: 'argument': truncation from 'double' to 'float'
   ElectionSimulator.vcxproj -> C:\Users\alper\source\repos\ElectionSimulator\x64\Debug\ElectionSimulator.exe

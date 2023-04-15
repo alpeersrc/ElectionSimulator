@@ -2,19 +2,19 @@
 
 Results::Results()
 {
-	foreseen.getParty("AKP")->setVote(30.5);
-	foreseen.getParty("MHP")->setVote(6.6);
-	foreseen.getParty("CHP")->setVote(26.0);
-	foreseen.getParty("IYIP")->setVote(13.6);
+	foreseen.getParty("AKP")->setVote(31.2);
+	foreseen.getParty("MHP")->setVote(6.2);
+	foreseen.getParty("CHP")->setVote(25.2);
+	foreseen.getParty("IYIP")->setVote(14.3);
 	foreseen.getParty("SP")->setVote(0.8);
-	foreseen.getParty("YSP")->setVote(10.6);
+	foreseen.getParty("YSP")->setVote(8.8);
 	foreseen.getParty("DEVA")->setVote(1.4);
 	foreseen.getParty("GP")->setVote(1.0);
-	foreseen.getParty("TIP")->setVote(1.8);
-	foreseen.getParty("MP")->setVote(2.1);
-	foreseen.getParty("ZP")->setVote(0.9);
-	foreseen.getParty("BBP")->setVote(0.5);
-	foreseen.getParty("YRP")->setVote(2.2);
+	foreseen.getParty("TIP")->setVote(2.0);
+	foreseen.getParty("MP")->setVote(4.1);
+	foreseen.getParty("ZP")->setVote(1.4);
+	foreseen.getParty("BBP")->setVote(1.6);
+	foreseen.getParty("YRP")->setVote(1.5);
 	foreseen.getParty("DP")->setVote(0.1);
 	foreseen.getParty("HUDAPAR")->setVote(0.4);
 	
@@ -1057,7 +1057,9 @@ void Results::printNationalResults(ofstream& parliament, ofstream& president)
 	float votes;
 	int seats;
 	int census = 0;
+	Party* party;
 
+	// compute overall parliamentary votes
 	for (int i = 0; i < NO_OF_DISTRICTS; i++) {
 		for (int j = 0; j < NO_OF_PARTIES; j++) {
 			partyName = nationalResults.getParty(j)->getName();
@@ -1073,36 +1075,79 @@ void Results::printNationalResults(ofstream& parliament, ofstream& president)
 		partyName = nationalResults.getParty(i)->getName();
 		votes = nationalResults.getParty(partyName)->getVote() / census;
 		nationalResults.getParty(partyName)->setVote(votes);
-		
-		if (votes < 0.1)
-			continue;
+	}
+
+	float prevGreatest, greatest;
+	int index = 0;
+	// sort and print overall parliamentary votes
+	prevGreatest = 100;
+	for (int i = 0; i < NO_OF_PARTIES; i++) {
+		greatest = 0;
+		for (int j = 0; j < NO_OF_PARTIES; j++) {
+			party = nationalResults.getParty(j);
+			if (party->getVote() >= greatest && party->getVote() < prevGreatest) {
+				index = j;
+				greatest = party->getVote();
+			}
+		}
+		prevGreatest = greatest;
+
+		if (nationalResults.getParty(index)->getVote() == 0) {
+			for (int j = 0; j < NO_OF_PARTIES; j++) {
+				party = nationalResults.getParty(j);
+				if (party->getVote() != 0 || party->getSeats() == 0)
+					continue;
+
+				stringstream stream;
+				stream << fixed << setprecision(2) << nationalResults.getParty(j)->getVote();
+				parliament << nationalResults.getParty(j)->getName() << "; " << stream.str() << "; " << nationalResults.getParty(j)->getSeats() << endl;
+			}
+			break;
+		}
 
 		stringstream stream;
-		stream << fixed << setprecision(2) << votes;
-		parliament << partyName << "; " << stream.str() << "; " << nationalResults.getParty(partyName)->getSeats() << endl;
+		stream << fixed << setprecision(2) << nationalResults.getParty(index)->getVote();
+		parliament << nationalResults.getParty(index)->getName() << "; " << stream.str() << "; " << nationalResults.getParty(index)->getSeats() << endl;
 	}
 
 	string name;
+	float candidates[NO_OF_CANDIDATES];
+	// compute overall presidential votes
 	for (int i = 0; i < NO_OF_CANDIDATES; i++) {
-		votes = 0;
-		if (i == 0)
+		candidates[i] = 0;
+		for (int j = 0; j < NO_OF_PARTIES; j++) {
+			if ((int)nationalResults.getParty(j)->getCandidate() == i)
+				candidates[i] += nationalResults.getParty(j)->getVote();
+		}
+	}
+
+	// sort and print overall presidential votes
+	index = 0;
+	prevGreatest = 100;
+	for (int i = 0; i < NO_OF_CANDIDATES; i++) {
+		greatest = 0;
+		for (int j = 0; j < NO_OF_CANDIDATES; j++) {
+			if (candidates[j] > greatest && candidates[j] < prevGreatest) {
+				index = j;
+				greatest = candidates[j];
+			}
+		}
+		prevGreatest = greatest;
+
+		if (index == 0)
 			name = "Erdogan";
-		else if (i == 1)
+		else if (index == 1)
 			name = "Kilicdaroglu";
-		else if (i == 2)
+		else if (index == 2)
 			name = "Ince";
 		else
 			name = "Ogan";
 
-		for (int j = 0; j < NO_OF_PARTIES; j++) {
-			if ((int)nationalResults.getParty(j)->getCandidate() == i)
-				votes += nationalResults.getParty(j)->getVote();
-		}
-
 		stringstream stream;
-		stream << fixed << setprecision(2) << votes;
+		stream << fixed << setprecision(2) << candidates[index];
 		president << name << "; " << stream.str() << endl;
 	}
+
 }
 
 void Results::distributeSeats()
