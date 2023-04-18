@@ -2,7 +2,7 @@
 
 void District::printParliamentaryResults(ofstream& file)
 {
-	file << name << "; " << noOfSeats << endl;
+	file << name << ", " << noOfSeats << endl;
 	parties.printParliamentaryResults(file);
 	file << endl;
 }
@@ -44,10 +44,16 @@ void District::printPresidentialResults(ofstream& file)
 
 		stringstream stream;
 		stream << fixed << setprecision(2) << vote[index];
-		file << name << "; " << stream.str() << endl;
+		file << name << ", " << stream.str() << endl;
 	}
 
 	file << endl;
+}
+
+void District::printCompactResults(ofstream& file)
+{
+	file << endl << name;
+	parties.printCompactResults(file);
 }
 
 void District::setUmbrella(Alliance alliance, string umbrellaParty)

@@ -14,6 +14,7 @@ public:
 	Party* getParty(int index) { return &parties[index]; };
 
 	void printParliamentaryResults(ofstream& file);
+	void printCompactResults(ofstream& file);
 	void distributeSeats(int noOfSeats);
 	void calculate(Parties* previous, Parties* foreseen);
 	void findSwings(Parties* previous);

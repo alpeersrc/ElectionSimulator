@@ -12,10 +12,10 @@
 using namespace std;
 
 enum class Alliance {
-	None,
 	People,
 	Nation,
-	Labour
+	Labour,
+	None
 };
 
 enum class Trend {

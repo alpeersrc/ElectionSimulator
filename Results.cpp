@@ -131,7 +131,7 @@ void Results::setToPrevious()
 	districts[8].setVote("HUDAPAR", 0.12);
 
 	districts[9].setName("Antalya");
-	districts[9].setNoOfSeats(16);
+	districts[9].setNoOfSeats(17);
 	districts[9].setCensus(1753);
 	districts[9].setVote("AKP", 34.96);
 	districts[9].setVote("MHP", 10.12);
@@ -329,7 +329,7 @@ void Results::setToPrevious()
 	districts[26].setVote("HUDAPAR", 0.24);
 
 	districts[27].setName("Denizli");
-	districts[27].setNoOfSeats(8);
+	districts[27].setNoOfSeats(7);
 	districts[27].setCensus(768);
 	districts[27].setVote("AKP", 40.74);
 	districts[27].setVote("MHP", 9.22);
@@ -406,7 +406,7 @@ void Results::setToPrevious()
 	districts[33].setVote("HUDAPAR", 0.19);
 
 	districts[34].setName("Eskisehir");
-	districts[34].setNoOfSeats(7);
+	districts[34].setNoOfSeats(6);
 	districts[34].setCensus(663);
 	districts[34].setVote("AKP", 38.78);
 	districts[34].setVote("MHP", 9.93);
@@ -505,7 +505,7 @@ void Results::setToPrevious()
 	districts[42].setVote("HUDAPAR", 0.15);
 
 	districts[43].setName("Istanbul II");
-	districts[43].setNoOfSeats(28);
+	districts[43].setNoOfSeats(27);
 	districts[43].setCensus(3125);
 	districts[43].setVote("AKP", 45.22);
 	districts[43].setVote("MHP", 8.11);
@@ -516,7 +516,7 @@ void Results::setToPrevious()
 	districts[43].setVote("HUDAPAR", 0.21);
 
 	districts[44].setName("Istanbul III");
-	districts[44].setNoOfSeats(35);
+	districts[44].setNoOfSeats(36);
 	districts[44].setCensus(3795);
 	districts[44].setVote("AKP", 41.9);
 	districts[44].setVote("MHP", 8.46);
@@ -659,7 +659,7 @@ void Results::setToPrevious()
 	districts[56].setVote("HUDAPAR", 0.18);
 
 	districts[57].setName("Kocaeli");
-	districts[57].setNoOfSeats(13);
+	districts[57].setNoOfSeats(14);
 	districts[57].setCensus(1371);
 	districts[57].setVote("AKP", 48.29);
 	districts[57].setVote("MHP", 11.36);
@@ -747,7 +747,7 @@ void Results::setToPrevious()
 	districts[64].setVote("HUDAPAR", 0.22);
 
 	districts[65].setName("Mus");
-	districts[65].setNoOfSeats(4);
+	districts[65].setNoOfSeats(3);
 	districts[65].setCensus(234);
 	districts[65].setVote("AKP", 32.4);
 	districts[65].setVote("MHP", 3.74);
@@ -813,7 +813,7 @@ void Results::setToPrevious()
 	districts[70].setVote("HUDAPAR", 0.11);
 
 	districts[71].setName("Sakarya");
-	districts[71].setNoOfSeats(7);
+	districts[71].setNoOfSeats(8);
 	districts[71].setCensus(725);
 	districts[71].setVote("AKP", 58.18);
 	districts[71].setVote("MHP", 13.64);
@@ -1180,7 +1180,6 @@ void Results::printLocalResults(ofstream& parliament, ofstream& president)
 
 void Results::printNationalResults(ofstream& parliament, ofstream& president)
 {
-	Parties nationalResults;
 	string partyName;
 	float votes;
 	int seats;
@@ -1190,19 +1189,19 @@ void Results::printNationalResults(ofstream& parliament, ofstream& president)
 	// compute overall parliamentary votes
 	for (int i = 0; i < NO_OF_DISTRICTS; i++) {
 		for (int j = 0; j < NO_OF_PARTIES; j++) {
-			partyName = nationalResults.getParty(j)->getName();
-			votes = nationalResults.getParty(partyName)->getVote();
-			seats = nationalResults.getParty(partyName)->getSeats();
-			nationalResults.getParty(partyName)->setVote(votes + districts[i].getVote(partyName) * districts[i].getCensus());
-			nationalResults.getParty(partyName)->setSeats(seats + districts[i].getNoOfSeats(partyName));
+			partyName = results.getParty(j)->getName();
+			votes = results.getParty(partyName)->getVote();
+			seats = results.getParty(partyName)->getSeats();
+			results.getParty(partyName)->setVote(votes + districts[i].getVote(partyName) * districts[i].getCensus());
+			results.getParty(partyName)->setSeats(seats + districts[i].getNoOfSeats(partyName));
 		}
 		census += districts[i].getCensus();
 	}
 
 	for (int i = 0; i < NO_OF_PARTIES; i++) {
-		partyName = nationalResults.getParty(i)->getName();
-		votes = nationalResults.getParty(partyName)->getVote() / census;
-		nationalResults.getParty(partyName)->setVote(votes);
+		partyName = results.getParty(i)->getName();
+		votes = results.getParty(partyName)->getVote() / census;
+		results.getParty(partyName)->setVote(votes);
 	}
 
 	float prevGreatest, greatest;
@@ -1212,7 +1211,7 @@ void Results::printNationalResults(ofstream& parliament, ofstream& president)
 	for (int i = 0; i < NO_OF_PARTIES; i++) {
 		greatest = 0;
 		for (int j = 0; j < NO_OF_PARTIES; j++) {
-			party = nationalResults.getParty(j);
+			party = results.getParty(j);
 			if (party->getVote() >= greatest && party->getVote() < prevGreatest) {
 				index = j;
 				greatest = party->getVote();
@@ -1220,28 +1219,28 @@ void Results::printNationalResults(ofstream& parliament, ofstream& president)
 		}
 		prevGreatest = greatest;
 
-		if (nationalResults.getParty(index)->getVote() == 0) {
+		if (results.getParty(index)->getVote() == 0) {
 			for (int j = 0; j < NO_OF_PARTIES; j++) {
-				party = nationalResults.getParty(j);
+				party = results.getParty(j);
 				if (party->getVote() != 0 || party->getSeats() == 0)
 					continue;
 
 				stringstream stream;
-				stream << fixed << setprecision(2) << nationalResults.getParty(j)->getVote();
-				parliament << nationalResults.getParty(j)->getName() << "; " << stream.str() << "; "; 
+				stream << fixed << setprecision(2) << results.getParty(j)->getVote();
+				parliament << results.getParty(j)->getName() << ", " << stream.str() << ", "; 
 				stream.str("");
-				stream << fixed << setprecision(2) << nationalResults.getParty(j)->getVote() - previous.getParty(j)->getVote();
-				parliament << stream.str() << "; " << nationalResults.getParty(j)->getSeats() << endl;
+				stream << fixed << setprecision(2) << results.getParty(j)->getVote() - previous.getParty(j)->getVote();
+				parliament << stream.str() << ", " << results.getParty(j)->getSeats() << endl;
 			}
 			break;
 		}
 
 		stringstream stream;
-		stream << fixed << setprecision(2) << nationalResults.getParty(index)->getVote();
-		parliament << nationalResults.getParty(index)->getName() << "; " << stream.str() << "; ";
+		stream << fixed << setprecision(2) << results.getParty(index)->getVote();
+		parliament << results.getParty(index)->getName() << ", " << stream.str() << ", ";
 		stream.str("");
-		stream << fixed << setprecision(2) << nationalResults.getParty(index)->getVote() - previous.getParty(index)->getVote();
-		parliament << stream.str() << "; " << nationalResults.getParty(index)->getSeats() << endl;
+		stream << fixed << setprecision(2) << results.getParty(index)->getVote() - previous.getParty(index)->getVote();
+		parliament << stream.str() << ", " << results.getParty(index)->getSeats() << endl;
 	}
 
 	string name;
@@ -1250,8 +1249,8 @@ void Results::printNationalResults(ofstream& parliament, ofstream& president)
 	for (int i = 0; i < NO_OF_CANDIDATES; i++) {
 		candidates[i] = 0;
 		for (int j = 0; j < NO_OF_PARTIES; j++) {
-			if ((int)nationalResults.getParty(j)->getCandidate() == i)
-				candidates[i] += nationalResults.getParty(j)->getVote();
+			if ((int)results.getParty(j)->getCandidate() == i)
+				candidates[i] += results.getParty(j)->getVote();
 		}
 	}
 
@@ -1279,9 +1278,32 @@ void Results::printNationalResults(ofstream& parliament, ofstream& president)
 
 		stringstream stream;
 		stream << fixed << setprecision(2) << candidates[index];
-		president << name << "; " << stream.str() << endl;
+		president << name << ", " << stream.str() << endl;
+	}
+}
+
+void Results::printCompactResults(ofstream& file)
+{
+	file << "District, People, , Nation, , Labour, , Others, " << endl;
+	float totalVotes;
+	int totalSeats;
+	file << "Nationwide";
+	for (int i = 0; i <= NO_OF_ALLIANCES; i++) {
+		totalVotes = 0;
+		totalSeats = 0;
+		for (int j = 0; j < NO_OF_PARTIES; j++) {
+			if (results.getParty(j)->getAlliance() == (Alliance)i) {
+				totalVotes += results.getParty(j)->getVote();
+				totalSeats += results.getParty(j)->getSeats();
+			}
+		}
+		stringstream stream;
+		stream << fixed << setprecision(2) << totalVotes;
+		file << ", " << stream.str() << ", " << totalSeats;
 	}
 
+	for (int i = 0; i < NO_OF_DISTRICTS; i++)
+		districts[i].printCompactResults(file);
 }
 
 void Results::distributeSeats()
@@ -1311,6 +1333,30 @@ void Results::takeInput()
 		cout << "Enter prediction for " << party->getName() << ": ";
 		cin >> input;
 		party->setVote(stof(input));
+	}
+}
+
+void Results::takeDataset(ifstream& file, int index)
+{
+	string parties;
+	string votes;
+
+	getline(file, parties);
+	for (int i = 0; i < index; i++)
+		getline(file, votes);
+
+	stringstream party(parties);
+	stringstream vote(votes);
+	string partyName;
+	string partyVote;
+
+	getline(party, partyName, ',');
+	getline(vote, partyVote, ',');
+
+	for (int i = 0; i < NO_OF_PARTIES; i++) {
+		getline(party, partyName, ',');
+		getline(vote, partyVote, ',');
+		foreseen.getParty(partyName)->setVote(stof(partyVote));
 	}
 }
 

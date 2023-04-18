@@ -141,20 +141,39 @@ void Parties::printParliamentaryResults(ofstream& file)
 
 				stringstream stream;
 				stream << fixed << setprecision(2) << parties[j].getVote();
-				file << parties[j].getName() << "; " << stream.str() << "; ";
+				file << parties[j].getName() << ", " << stream.str() << ", ";
 				stream.str("");
 				stream << fixed << setprecision(2) << parties[j].getVote() - prevParties[j].getVote();
-				file << stream.str() << "; " << parties[j].getSeats() << endl;
+				file << stream.str() << ", " << parties[j].getSeats() << endl;
 			}
 			break;
 		}
 
 		stringstream stream;
 		stream << fixed << setprecision(2) << parties[index].getVote();
-		file << parties[index].getName() << "; " << stream.str() << "; ";
+		file << parties[index].getName() << ", " << stream.str() << ", ";
 		stream.str("");
 		stream << fixed << setprecision(2) << parties[index].getVote() - prevParties[index].getVote();
-		file << stream.str() << "; " << parties[index].getSeats() << endl;
+		file << stream.str() << ", " << parties[index].getSeats() << endl;
+	}
+}
+
+void Parties::printCompactResults(ofstream& file)
+{
+	float totalVotes;
+	int totalSeats;
+	for (int i = 0; i <= NO_OF_ALLIANCES; i++) {
+		totalVotes = 0;
+		totalSeats = 0;
+		for (int j = 0; j < NO_OF_PARTIES; j++) {
+			if (getParty(j)->getAlliance() == (Alliance)i) {
+				totalVotes += getParty(j)->getVote();
+				totalSeats += getParty(j)->getSeats();
+			}
+		}
+		stringstream stream;
+		stream << fixed << setprecision(2) << totalVotes;
+		file << ", " << stream.str() << ", " << totalSeats;
 	}
 }
 

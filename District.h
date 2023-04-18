@@ -20,6 +20,7 @@ public:
 
 	void printParliamentaryResults(ofstream& file);
 	void printPresidentialResults(ofstream& file);
+	void printCompactResults(ofstream& file);
 	void distributeSeats() { parties.distributeSeats(noOfSeats); };
 	void calculate(Parties* previous, Parties* foreseen) { parties.calculate(previous, foreseen); };
 
